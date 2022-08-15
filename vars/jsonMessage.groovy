@@ -20,7 +20,7 @@ builder.book {
 }
 }
 
-dev call() {
+def call() {
     JsonBuilder builder=buildMessage()
 
 println builder

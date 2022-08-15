@@ -24,8 +24,8 @@ builder.book {
 def call() {
     def builder=buildMessage()
 
-//println builder
-//println ""
-//println builder.toPrettyString()
+println builder
+println ""
+println builder.toPrettyString()
 
 }

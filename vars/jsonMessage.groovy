@@ -7,6 +7,7 @@ def jsonParseData(jsonObj) {
     return slurObj
 }
 
+@NonCPS
 def buildMessage() {
 def builder = new JsonBuilder()
 builder.book {

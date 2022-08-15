@@ -18,7 +18,7 @@ builder.book {
     currency 'USD'
     price 44.95
     format 'pdf', 'print'
-}
+    }
 }
 
 def call() {

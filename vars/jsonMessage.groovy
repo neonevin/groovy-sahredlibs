@@ -21,10 +21,10 @@ builder.book {
 }
 
 def call() {
-    JsonBuilder builder=buildMessage()
+    def builder=buildMessage()
 
 //println builder
-println ""
+//println ""
 //println builder.toPrettyString()
 
 }

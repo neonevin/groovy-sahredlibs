@@ -19,10 +19,10 @@ builder.book {
     price 44.95
     format 'pdf', 'print'
     */
-    PHI_DOMAIN_ID 'HR'
-    PHI_CR_NUM 'CR000012'
-    DEL_JIRA_STATUS 'TEST'
-    PHI_ASSIGN_TO 'DTTLNARESH'
+    phidomainid 'HR'
+    phicrnum 'CR000012'
+    deljirastatus 'TEST'
+    phiassignto 'DTTLNARESH'
     }
 }
 

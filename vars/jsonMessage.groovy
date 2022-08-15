@@ -23,8 +23,8 @@ builder.book {
 def call() {
     JsonBuilder builder=buildMessage()
 
-println builder
+//println builder
 println ""
-println builder.toPrettyString()
+//println builder.toPrettyString()
 
 }

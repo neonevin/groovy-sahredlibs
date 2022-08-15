@@ -26,5 +26,4 @@ def call() {
     println builder
     println ""
     println builder.toString()
-
 }

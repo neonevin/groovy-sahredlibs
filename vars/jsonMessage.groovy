@@ -22,7 +22,7 @@ builder.book {
 }
 
 def call() {
-    def builder=buildMessage()
+    JsonBuilder builder=buildMessage()
 
 println builder
 println ""

@@ -11,10 +11,10 @@ def buildMessage() {
     JsonBuilder builder = new JsonBuilder()
     builder.CR_TASK_NEXT_STEP_REQ {
         CR_TASK_NEXT_STEP_REQ{
-            PHI_DOMAIN_ID "HR"
-            PHI_CR_NUM "CR000012"
-            DEL_JIRA_STATUS "TEST"
-            PHI_ASSIGN_TO "DTTLNARESH"
+            PHI_DOMAIN_ID 'HR
+            PHI_CR_NUM 'CR000012'
+            DEL_JIRA_STATUS 'TEST'
+            PHI_ASSIGN_TO 'DTTLNARESH'
         }
 
     }

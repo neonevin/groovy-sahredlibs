@@ -8,24 +8,23 @@ def jsonParseData(jsonObj) {
 }
 
 def buildMessage() {
-    JsonBuilder builder = new JsonBuilder()
-    builder.CR_TASK_NEXT_STEP_REQ {
-            PHI_DOMAIN_ID 'HR'
-            PHI_CR_NUM 'CR000012'
-            DEL_JIRA_STATUS 'TEST'
-            PHI_ASSIGN_TO 'DTTLNARESH'
-    }
-
+def builder = new JsonBuilder()
+builder.book {
+    title 'Head First Java'
+    publisher 'Orielly'
+    author 'Kathy Sierra', 'Bert Bates'
+    year '2005'
+    currency 'USD'
+    price 44.95
+    format 'pdf', 'print'
+}
 }
 
 dev call() {
     JsonBuilder builder=buildMessage()
 
-println "JSONBuilder Object : " + builder
+println builder
 println ""
-println "JSON Pretty Printed Config "
-println "=========================="
-println JsonOutput.prettyPrint(builder.toString())
-println ""
+println builder.toPrettyString()
 
 }

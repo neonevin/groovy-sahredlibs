@@ -12,6 +12,19 @@ class book {
         this.author=author
     }
 }
+
+class CR_TASK_NEXT_STEP_REQ {
+        String PHI_DOMAIN_ID 
+    String PHI_CR_NUM 
+    String DEL_JIRA_STATUS 
+    String PHI_ASSIGN_TO 
+    book(PHI_DOMAIN_ID, PHI_CR_NUM, DEL_JIRA_STATUS,PHI_ASSIGN_TO) {
+        this.PHI_DOMAIN_ID=PHI_DOMAIN_ID
+        this.PHI_CR_NUM=PHI_CR_NUM
+        this.DEL_JIRA_STATUS=DEL_JIRA_STATUS
+        this.PHI_ASSIGN_TO=PHI_ASSIGN_TO
+    }
+}
 def jsonParseData(jsonObj) {
     def slurObj=new groovy.json.JsonSlurper().parseText(jsonObj)
     return slurObj
@@ -19,9 +32,10 @@ def jsonParseData(jsonObj) {
 
 @NonCPS
 def buildMessage() {
-    def book1 = new book('Learn Java','Orielly','Kathy Sierra')
-         book1.publisher='New guy'
-def builder = new JsonBuilder(book1)
+  //  def book1 = new book('Learn Java','Orielly','Kathy Sierra')
+    def cr_next = new CR_TASK_NEXT_STEP_REQ('HR','CR000012','TEST','DTTLNARESH' )
+//def builder = new JsonBuilder(book1)
+def builder = new JsonBuilder(cr_next)
 /*builder.CR_TASK_NEXT_STEP_REQ {
     'PHI_DOMAIN_ID' 'HR'
     'PHI_CR_NUM' 'CR000012'
@@ -38,7 +52,7 @@ def builder = new JsonBuilder(book1)
     format 'pdf', 'print'
     }*/
     //builder.book.publisher='NEW CR'
-           
+   // builder.book.publisher='New guy'
 }
 
 def call() {

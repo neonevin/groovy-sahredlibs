@@ -10,7 +10,7 @@ def jsonParseData(jsonObj) {
 @NonCPS
 def buildMessage() {
 def builder = new JsonBuilder()
-builder.CR_TASK_NEXT_STEP_REQ {
+/*builder.CR_TASK_NEXT_STEP_REQ {
 /*    title 'Head First Java'
     publisher 'Orielly'
     author 'Kathy Sierra', 'Bert Bates'
@@ -23,8 +23,17 @@ builder.CR_TASK_NEXT_STEP_REQ {
     'PHI_CR_NUM' 'CR000012'
     'DEL_JIRA_STATUS' 'TEST'
     'PHI_ASSIGN_TO' 'DTTLNARESH'
+    }*/
+    builder.book {
+    title 'Head First Java'
+    publisher 'Orielly'
+    author 'Kathy Sierra', 'Bert Bates'
+    year '2005'
+    currency 'USD'
+    price 44.95
+    format 'pdf', 'print'
     }
-    builder.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM='NEW CR'
+    builder.book.publisher='NEW CR'
 }
 
 def call() {

@@ -2,6 +2,16 @@ import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 
+class book {
+        string title 
+    string publisher 
+    string author 
+    book(title, publisher, author) {
+        this.title=title
+        this.publisher=publisher
+        this.author=author
+    }
+}
 def jsonParseData(jsonObj) {
     def slurObj=new groovy.json.JsonSlurper().parseText(jsonObj)
     return slurObj
@@ -9,14 +19,15 @@ def jsonParseData(jsonObj) {
 
 @NonCPS
 def buildMessage() {
-def builder = new JsonBuilder()
+    def book1 = new book('Learn Java','Orielly','Kathy Sierra')
+def builder = new JsonBuilder(book1)
 /*builder.CR_TASK_NEXT_STEP_REQ {
     'PHI_DOMAIN_ID' 'HR'
     'PHI_CR_NUM' 'CR000012'
     'DEL_JIRA_STATUS' 'TEST'
     'PHI_ASSIGN_TO' 'DTTLNARESH'
     }*/
-builder.book {
+/*builder.book {
     title 'Head First Java'
     publisher 'Orielly'
     author 'Kathy Sierra', 'Bert Bates'
@@ -24,8 +35,8 @@ builder.book {
     currency 'USD'
     price 44.95
     format 'pdf', 'print'
-    }
-    builder.book.publisher='NEW CR'
+    }*/
+    //builder.book.publisher='NEW CR'
 }
 
 def call() {

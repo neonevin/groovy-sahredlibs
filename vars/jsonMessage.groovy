@@ -20,6 +20,7 @@ def jsonParseData(jsonObj) {
 @NonCPS
 def buildMessage() {
     def book1 = new book('Learn Java','Orielly','Kathy Sierra')
+         book1.publisher='New guy'
 def builder = new JsonBuilder(book1)
 /*builder.CR_TASK_NEXT_STEP_REQ {
     'PHI_DOMAIN_ID' 'HR'
@@ -37,7 +38,7 @@ def builder = new JsonBuilder(book1)
     format 'pdf', 'print'
     }*/
     //builder.book.publisher='NEW CR'
-            builder.book.publisher='New guy'
+           
 }
 
 def call() {

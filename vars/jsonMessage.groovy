@@ -37,6 +37,7 @@ def builder = new JsonBuilder(book1)
     format 'pdf', 'print'
     }*/
     //builder.book.publisher='NEW CR'
+            builder.book.publisher='New guy'
 }
 
 def call() {

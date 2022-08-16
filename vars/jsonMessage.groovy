@@ -30,7 +30,7 @@ def call() {
     JsonBuilder builder=buildMessage()
     println builder
     println ""
-    println builder.toString()
+    println builder.toPrettyString()
 }
 /*
 def buildMessage() {

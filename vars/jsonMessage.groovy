@@ -24,6 +24,7 @@ builder.CR_TASK_NEXT_STEP_REQ {
     'DEL_JIRA_STATUS' 'TEST'
     'PHI_ASSIGN_TO' 'DTTLNARESH'
     }
+    builder.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM='NEW CR'
 }
 
 def call() {

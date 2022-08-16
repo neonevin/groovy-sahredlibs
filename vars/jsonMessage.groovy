@@ -3,9 +3,9 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 
 class book {
-        string title 
-    string publisher 
-    string author 
+        String title 
+    String publisher 
+    String author 
     book(title, publisher, author) {
         this.title=title
         this.publisher=publisher

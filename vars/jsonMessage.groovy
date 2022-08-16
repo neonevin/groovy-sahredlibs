@@ -13,7 +13,7 @@ class book {
     }
 }
 
-class CR_TASK_NEXT_STEP_REQ {
+/* class CR_TASK_NEXT_STEP_REQ {
         String PHI_DOMAIN_ID 
     String PHI_CR_NUM 
     String DEL_JIRA_STATUS 
@@ -24,6 +24,19 @@ class CR_TASK_NEXT_STEP_REQ {
         this.DEL_JIRA_STATUS=DEL_JIRA_STATUS
         this.PHI_ASSIGN_TO=PHI_ASSIGN_TO
     }
+} */
+
+class CR_TASK_NEXT_STEP_REQ {
+    def mapJson = [CR_TASK_NEXT_STEP_REQ : [PHI_DOMAIN_ID: "", PHI_CR_TYPE: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:""]]
+
+    CR_TASK_NEXT_STEP_REQ(phi_domain_id, phi_cr_type, phi_cr_num, del_jira_status,phi_assign_to,phi_migr_type) {
+        this.mapJson.CR_TASK_NEXT_STEP_REQ.PHI_DOMAIN_ID=phi_domain_id
+        this.mapJson.CR_TASK_NEXT_STEP_REQ.PHI_CR_TYPE=phi_cr_type
+        this.mapJson.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM=phi_cr_num
+        this.mapJson.CR_TASK_NEXT_STEP_REQ.DEL_JIRA_STATUS=del_jira_status
+        this.mapJson.CR_TASK_NEXT_STEP_REQ.PHI_ASSIGN_TO=phi_assign_to
+        this.mapJson.CR_TASK_NEXT_STEP_REQ.PHI_MIGR_TYPE=phi_migr_type
+    }
 }
 def jsonParseData(jsonObj) {
     def slurObj=new groovy.json.JsonSlurper().parseText(jsonObj)
@@ -33,7 +46,7 @@ def jsonParseData(jsonObj) {
 @NonCPS
 def buildMessage() {
   //  def book1 = new book('Learn Java','Orielly','Kathy Sierra')
-    def cr_next = new CR_TASK_NEXT_STEP_REQ('HR','CR000012','TEST','DTTLNARESH' )
+    def cr_next = new CR_TASK_NEXT_STEP_REQ('HR','CR000012','TEST','DTTLNARESH','','' )
 //def builder = new JsonBuilder(book1)
 def builder = new JsonBuilder(cr_next)
 /*builder.CR_TASK_NEXT_STEP_REQ {

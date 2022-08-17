@@ -1,7 +1,7 @@
 import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
-
+import jenkins.plugins.http_request
 
 
 class crNextStep {
@@ -24,10 +24,16 @@ def buildMessage() {
 
 }
 
+def sendMessage(){
+    def response = httpRequest "http://httpbin.org/response-headers?param1=hello"
+    println('Status: '+response.status)
+    println('Response: '+response.content)
+}
 def call() {
     JsonBuilder builder=buildMessage()
     println builder
     println ""
     println builder.toPrettyString()
+    sendMessage()
 }
 

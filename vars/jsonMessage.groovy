@@ -28,6 +28,7 @@ def sendMessage(){
     def response = httpRequest "http://httpbin.org/response-headers?param1=hello"
     println('Status: '+response.status)
     println('Response: '+response.content)
+    
 }
 def call() {
     JsonBuilder builder=buildMessage()

@@ -32,6 +32,16 @@ def call() {
     println builder
     println ""
     println builder.toPrettyString()
-    sendMessage()
+    //sendMessage()
+    getGroovyVersion() 
 }
 
+public String getGroovyVersion() {
+        try {
+                return org.codehaus.groovy.runtime.InvokerHelper.version
+        }
+        catch (Throwable ignore) { }
+        return GroovySystem.version
+}
+
+println getGroovyVersion()

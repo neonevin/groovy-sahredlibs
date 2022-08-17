@@ -1,7 +1,7 @@
 import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
-import main.groovy.wslite.rest
+import org.wslite.rest
 
 
 class crNextStep {

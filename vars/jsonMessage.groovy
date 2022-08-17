@@ -1,7 +1,7 @@
 import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
-import jenkins.plugins.http_request
+import wslite.rest
 
 
 class crNextStep {
@@ -25,10 +25,7 @@ def buildMessage() {
 }
 
 def sendMessage(){
-    def response = httpRequest "http://httpbin.org/response-headers?param1=hello"
-    println('Status: '+response.status)
-    println('Response: '+response.content)
-    
+RESTClient client = new RESTClient("https://postman-echo.com")
 }
 def call() {
     JsonBuilder builder=buildMessage()

@@ -25,7 +25,7 @@ def buildMessage() {
 }
 
 def sendMessage(){
-RESTClient client = new RESTClient("https://postman-echo.com")
+RESTClient client = new RESTClient("http://localhost:8080")
 }
 def call() {
     JsonBuilder builder=buildMessage()

@@ -1,9 +1,9 @@
 import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
-import org.wslite.rest
-
-
+//import org.wslite.rest
+//@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
+//import wslite.rest.RESTClient
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_TYPE: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:""]
 
@@ -17,7 +17,7 @@ class crNextStep {
     }
 }
 
-@NonCPS
+//@NonCPS
 def buildMessage() {
     def cr_next = new crNextStep('HR','CR000012','TEST','DTTLNARESH','','' )
     def builder = new JsonBuilder(cr_next)

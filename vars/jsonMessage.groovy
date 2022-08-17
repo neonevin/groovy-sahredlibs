@@ -32,7 +32,7 @@ def call() {
     println builder
     println ""
     println builder.toPrettyString()
-    //sendMessage()
+    sendMessage()
     getGroovyVersion() 
 }
 

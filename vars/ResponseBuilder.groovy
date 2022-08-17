@@ -22,8 +22,7 @@ import org.wslite.http.HTTPResponse
 import groovy.json.JsonSlurper
 import javax.xml.parsers.SAXParserFactory
 import groovy.xml.FactorySupport
-import groovy.xml.XmlSlurper
-
+import groovy.util.XmlSlurper
 class ResponseBuilder {
 
     Response build(HTTPRequest httpRequest, HTTPResponse httpResponse) {

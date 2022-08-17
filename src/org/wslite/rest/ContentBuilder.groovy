@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.rest
+package org.wslite.rest
 
 import groovy.xml.*
 import groovy.json.*
-import wslite.http.*
-import wslite.rest.multipart.BodyPart
+import org.wslite.http.*
+import org.wslite.rest.multipart.BodyPart
 
 class ContentBuilder {
 

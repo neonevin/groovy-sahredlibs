@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.rest
+package org.wslite.rest
 
 enum ContentType {
     JSON(['application/json', 'application/hal+json', 'application/javascript', 'text/javascript', 'text/json']),

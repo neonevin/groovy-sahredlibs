@@ -1,4 +1,4 @@
-/* Copyright 2011 the original author or authors.
+/* Copyright 2011-2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,10 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.http.auth
+package org.wslite.http
 
-interface HTTPAuthorization {
+class HTTP {
 
-    void authorize(conn)
+    static final String DEFAULT_CHARSET = 'ISO-8859-1' // http://tools.ietf.org/html/rfc2616#section-3.7.1
+
+    static final String CONTENT_TYPE_HEADER = 'Content-Type'
+    static final String CONTENT_LENGTH_HEADER = 'Content-Length'
+    static final String AUTHORIZATION_HEADER = 'Authorization'
+    static final String ACCEPT_HEADER = 'Accept'
+    static final String X_HTTP_METHOD_OVERRIDE_HEADER = 'X-HTTP-Method-Override'
 
 }

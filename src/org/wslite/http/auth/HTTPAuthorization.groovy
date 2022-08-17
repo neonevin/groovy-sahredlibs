@@ -12,18 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.rest
+package org.wslite.http.auth
 
-import wslite.http.HTTPRequest
-import wslite.http.HTTPResponse
+interface HTTPAuthorization {
 
-class RESTContentParseException extends RESTClientException {
+    void authorize(conn)
 
-    RESTContentParseException(String message, HTTPRequest httpRequest, HTTPResponse httpResponse) {
-        super(message, httpRequest, httpResponse)
-    }
-
-    RESTContentParseException(String message, Throwable cause, HTTPRequest httpRequest, HTTPResponse httpResponse) {
-        super(message, cause, httpRequest, httpResponse)
-    }
 }

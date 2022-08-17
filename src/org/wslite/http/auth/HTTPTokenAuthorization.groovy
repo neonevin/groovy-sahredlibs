@@ -12,41 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.http.auth
+package org.wslite.http.auth
 
-import wslite.http.HTTP
-import wslite.util.ObjectHelper
+import org.wslite.http.HTTP
+import org.wslite.util.ObjectHelper
 
-class HTTPBasicAuthorization implements HTTPAuthorization {
+class HTTPTokenAuthorization implements HTTPAuthorization {
 
-    String username
-    String password
+    String token
 
     private String authorization
 
-    HTTPBasicAuthorization() { }
+    HTTPTokenAuthorization() { }
 
-    HTTPBasicAuthorization(String username, String password) {
-        this.username = username
-        this.password = password
+    HTTPTokenAuthorization(String token) {
+        setToken(token)
     }
 
-    void setUsername(String username) {
-        this.username = username
+    void setToken(String token) {
+        this.token = token
         authorization = null
     }
 
-    void setPassword(String password) {
-        this.password = password
-        authorization = null
-    }
-
-    String getUsername() {
-        return username
-    }
-
-    String getPassword() {
-        return password
+    String getToken() {
+        return token
     }
 
     void authorize(conn) {
@@ -55,14 +44,14 @@ class HTTPBasicAuthorization implements HTTPAuthorization {
 
     private String getAuthorization() {
         if (!authorization) {
-            authorization = 'Basic ' + "${username}:${password}".toString().bytes.encodeBase64()
+            authorization = token
         }
         return authorization
     }
 
     @Override
     String toString() {
-        ObjectHelper.dump(this, include:['username'])
+        ObjectHelper.dump(this, include:['token'])
     }
 
 }

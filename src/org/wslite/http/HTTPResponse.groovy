@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.http
+package org.wslite.http
 
-import wslite.util.ObjectHelper
+import org.wslite.util.ObjectHelper
 
 class HTTPResponse {
 

@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.rest
+package org.wslite.rest
 
-import wslite.http.*
-import wslite.http.auth.*
+import org.wslite.http.*
+import org.wslite.http.auth.*
 
 class RESTClient {
 

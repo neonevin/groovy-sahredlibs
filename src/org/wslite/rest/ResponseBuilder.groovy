@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package wslite.rest
+package org.wslite.rest
 
 import groovy.json.JsonSlurper
-import wslite.http.ContentTypeHeader
-import wslite.http.HTTPRequest
-import wslite.http.HTTPResponse
+import org.wslite.http.ContentTypeHeader
+import org.wslite.http.HTTPRequest
+import org.wslite.http.HTTPResponse
 
 import javax.xml.parsers.SAXParserFactory
 import groovy.xml.FactorySupport;

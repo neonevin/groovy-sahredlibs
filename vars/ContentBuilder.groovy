@@ -16,6 +16,7 @@
 
 import groovy.xml.*
 import groovy.json.*
+import groovy.json.JsonBuilder
 /*
 import org.wslite.http.*
 import org.wslite.rest.multipart.BodyPart
@@ -74,6 +75,9 @@ class ContentBuilder {
     void text(content) {
         dataContentType = ContentType.TEXT
         data = content?.toString()?.getBytes(getCharset())
+        /*println 'content builder'
+        println content?.toString()
+        println data*/
     }
 
     void urlenc(Map content) {

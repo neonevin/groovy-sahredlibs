@@ -26,7 +26,7 @@ def buildMessage() {
     def builder = new JsonBuilder(cr_next)
 
 }
-
+@NonCPS
 def sendMessage(JsonBuilder jsonMsg,String userid, String password){
 
     //RESTClient client = new RESTClient("http://localhost:8080")

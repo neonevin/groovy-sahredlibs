@@ -19,8 +19,24 @@ import org.wslite.util.ObjectHelper
 
 class Response {
 
+    /* implementing properties and methods from HTTPResponse as @delegate doesn't work in Jenkins CPS */
+    // start
+    URL url
+    int statusCode
+    String statusMessage
+    String contentType
+    String charset
+    String contentEncoding
+    int contentLength
+    Date date
+    Date expiration
+    Date lastModified
+    Map headers = new TreeMap(String.CASE_INSENSITIVE_ORDER)
+    byte[] data
+    // end
+    
     HTTPRequest request
-    @Delegate HTTPResponse response
+    /* commenting this @Delegate HTTPResponse response */
 
     private Map parsedResponseContent = [:]
 
@@ -36,7 +52,23 @@ class Response {
     def propertyMissing(String name, value) {
         parsedResponseContent[name] = value
     }
+    /* implementing properties and methods from HTTPResponse as @delegate doesn't work in Jenkins CPS */
+    // start
+    Map getHeaders() {
+        return headers.asImmutable()
+    }
 
+    void setHeaders(Map map) {
+        headers.putAll(map)
+    }
+
+    String getContentAsString() {
+        if (!data) {
+            return ''
+        }
+        return new String(data, charset ?: HTTP.DEFAULT_CHARSET)
+    }
+    // end
     @Override
     String toString() {
         def excludes = ['response', 'data', 'contentAsString'] + parsedResponseContent.keySet()

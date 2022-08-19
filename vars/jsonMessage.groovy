@@ -97,11 +97,11 @@ def call(String userid, String password) {
  json name: "Guillaume", age: 33
 println 'print jsonoutput'
 println JsonOutput.toJson(json)
-*//*
-println 'calling send message'
+*/
+    println 'calling send message'
 
- //   sendMessage(builder,userid,password)
-    getGroovyVersion() */
+    sendMessage(builder,userid,password)
+  /*  getGroovyVersion() */
 }
 
 public String getGroovyVersion() {

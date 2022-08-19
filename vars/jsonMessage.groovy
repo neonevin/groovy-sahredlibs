@@ -4,7 +4,8 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 //import org.wslite.rest.*
 //@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
-import wslite.rest.RESTClient
+import org.wslite.rest.RESTClient
+import org.wslite.rest.http.auth.*
 
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_TYPE: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:""]

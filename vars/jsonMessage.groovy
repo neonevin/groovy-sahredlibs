@@ -79,9 +79,9 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     println response.text
 }
 
-def call(String userid, String password) {
-    //def call() {
-    println userid + password
+//def call(String userid, String password) {
+    def call() {
+    //println userid + password
     JsonBuilder builder=buildMessage()
    // println builder
     println ""
@@ -90,16 +90,16 @@ def call(String userid, String password) {
     
    // JsonSlurper slurper= new JsonSlurper().parseText(builder.toString())
     //sendMessage(groovy.json.JsonOutput.toJson(builder))
-
+*/
 /* def json = new groovy.json.JsonBuilder()
  json name: "Guillaume", age: 33
 println 'print jsonoutput'
 println JsonOutput.toJson(json)
-*/
+*//*
 println 'calling send message'
 
  //   sendMessage(builder,userid,password)
-    getGroovyVersion() 
+    getGroovyVersion() */
 }
 
 public String getGroovyVersion() {

@@ -59,9 +59,11 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     //def CR_TASK_NEXT_STEP_REQ =[ 'PHI_DOMAIN_ID': "", 'PHI_CR_TYPE': "", 'PHI_CR_NUM': "", 'DEL_JIRA_STATUS':"",  'PHI_ASSIGN_TO':"", 'PHI_MIGR_TYPE':""]
     //def client = new RESTClient("https://typedwebhook.tools/webhook/b802d188-fce9-438a-a51b-d426fff33216")
     
-    
+     println "in send message 1"
+
     def client = new RESTClient("http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
     client.authorization = new HTTPBasicAuthorization(userid, password)
+    println "in send message 2"
     def response = client.post() {
         type "application/json"  // String or ContentType
         charset "US-ASCII"

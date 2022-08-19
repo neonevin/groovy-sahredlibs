@@ -25,7 +25,7 @@ def buildMessage() {
 
 }
 
-def sendMessage(JsonBuilder jsonMsg){
+def sendMessage(JsonBuilder jsonMsg,String userid, String passwor){
 
     //RESTClient client = new RESTClient("http://localhost:8080")
   /*  try{
@@ -79,7 +79,8 @@ def sendMessage(JsonBuilder jsonMsg){
     println response.text
 }
 
-def call() {
+def call(String userid, String password) {
+    println userid + password
     JsonBuilder builder=buildMessage()
    // println builder
     println ""
@@ -96,7 +97,7 @@ println JsonOutput.toJson(json)
 */
 println 'calling send message'
 
-    sendMessage(builder)
+    sendMessage(builder,userid,password)
     getGroovyVersion() 
 }
 
@@ -109,5 +110,5 @@ public String getGroovyVersion() {
 }
 
 //println getGroovyVersion()
-call()
+//call('usr', 'pwd')
 

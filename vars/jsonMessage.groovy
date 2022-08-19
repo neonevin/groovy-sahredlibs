@@ -5,6 +5,7 @@ import groovy.json.JsonSlurper
 //import org.wslite.rest.*
 //@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
 import wslite.rest.RESTClient
+
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_TYPE: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:""]
 
@@ -79,9 +80,9 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     println response.text
 }
 
-//def call(String userid, String password) {
-    def call() {
-    //println userid + password
+def call(String userid, String password) {
+//    def call() {
+    println userid + password
     JsonBuilder builder=buildMessage()
    // println builder
     println ""
@@ -90,7 +91,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     
    // JsonSlurper slurper= new JsonSlurper().parseText(builder.toString())
     //sendMessage(groovy.json.JsonOutput.toJson(builder))
-*/
+
 /* def json = new groovy.json.JsonBuilder()
  json name: "Guillaume", age: 33
 println 'print jsonoutput'

@@ -37,7 +37,7 @@ class RESTClient {
         this.httpClient = client
     }
 
-    void setAuthorization(HTTPAuthorization authorization) {
+    @NonCPS void setAuthorization(HTTPAuthorization authorization) {
         this.httpClient.authorization = authorization
     }
 

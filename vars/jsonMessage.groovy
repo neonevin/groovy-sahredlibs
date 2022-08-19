@@ -62,7 +62,11 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
      println "in send message 1"
 
     def client = new RESTClient("http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
+    try{
     client.authorization = new HTTPBasicAuthorization(userid, password)
+    }catch (Exception e){
+        println "auth fail"
+    }
     println "in send message 2"
     def response = client.post() {
         type "application/json"  // String or ContentType

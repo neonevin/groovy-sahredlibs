@@ -25,7 +25,7 @@ def buildMessage() {
 
 }
 
-def sendMessage(JsonBuilder jsonMsg,String userid, String passwor){
+def sendMessage(JsonBuilder jsonMsg,String userid, String password){
 
     //RESTClient client = new RESTClient("http://localhost:8080")
   /*  try{
@@ -57,7 +57,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String passwor){
     //def CR_TASK_NEXT_STEP_REQ =[ 'PHI_DOMAIN_ID': "", 'PHI_CR_TYPE': "", 'PHI_CR_NUM': "", 'DEL_JIRA_STATUS':"",  'PHI_ASSIGN_TO':"", 'PHI_MIGR_TYPE':""]
     //def client = new RESTClient("https://typedwebhook.tools/webhook/b802d188-fce9-438a-a51b-d426fff33216")
     def client = new RESTClient("http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
-    client.authorization = new HTTPBasicAuthorization("username", "secret")
+    client.authorization = new HTTPBasicAuthorization(userid, password)
     def response = client.post() {
         type "application/json"  // String or ContentType
         charset "US-ASCII"
@@ -79,8 +79,9 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String passwor){
     println response.text
 }
 
-def call(String userid, String password) {
-    println userid + password
+//def call(String userid, String password) {
+    def call() {
+    //println userid + password
     JsonBuilder builder=buildMessage()
    // println builder
     println ""
@@ -97,7 +98,7 @@ println JsonOutput.toJson(json)
 */
 println 'calling send message'
 
-    sendMessage(builder,userid,password)
+ //   sendMessage(builder,userid,password)
     getGroovyVersion() 
 }
 

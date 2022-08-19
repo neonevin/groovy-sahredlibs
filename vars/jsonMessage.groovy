@@ -20,7 +20,7 @@ class crNextStep {
     }
 }
 
-//@NonCPS
+@NonCPS
 def buildMessage() {
     def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','S' )
     def builder = new JsonBuilder(cr_next)

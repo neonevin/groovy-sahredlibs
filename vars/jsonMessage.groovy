@@ -2,9 +2,9 @@ import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
-//import org.wslite.rest
+//import org.wslite.rest.*
 //@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
-//import wslite.rest.RESTClient
+import wslite.rest.RESTClient
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_TYPE: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:""]
 
@@ -18,7 +18,7 @@ class crNextStep {
     }
 }
 
-//@NonCPS
+@NonCPS
 def buildMessage() {
     def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','S' )
     def builder = new JsonBuilder(cr_next)
@@ -79,9 +79,9 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     println response.text
 }
 
-//def call(String userid, String password) {
-    def call() {
-    //println userid + password
+def call(String userid, String password) {
+    //def call() {
+    println userid + password
     JsonBuilder builder=buildMessage()
    // println builder
     println ""
@@ -112,4 +112,5 @@ public String getGroovyVersion() {
 
 //println getGroovyVersion()
 //call('usr', 'pwd')
+//call()
 

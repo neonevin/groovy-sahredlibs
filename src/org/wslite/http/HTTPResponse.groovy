@@ -48,6 +48,7 @@ class HTTPResponse {
     }
 
     @Override
+    @NonCPS
     String toString() {
         def excludes = ['data', 'contentAsString']
         ObjectHelper.dump(this, exclude:excludes)

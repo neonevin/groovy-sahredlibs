@@ -70,6 +70,7 @@ class Response {
     }
     // end
     @Override
+    @NonCPS
     String toString() {
         def excludes = ['response', 'data', 'contentAsString'] + parsedResponseContent.keySet()
         ObjectHelper.dump(this, exclude:excludes)

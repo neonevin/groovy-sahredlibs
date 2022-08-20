@@ -31,6 +31,7 @@ enum HTTPMethod {
     }
 
     @Override
+    @NonCPS
     String toString() {
         return method
     }

@@ -50,6 +50,7 @@ class HTTPTokenAuthorization implements HTTPAuthorization {
     }
 
     @Override
+    @NonCPS
     String toString() {
         ObjectHelper.dump(this, include:['token'])
     }

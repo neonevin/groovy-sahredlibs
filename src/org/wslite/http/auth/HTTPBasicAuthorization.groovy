@@ -61,6 +61,7 @@ class HTTPBasicAuthorization implements HTTPAuthorization {
     }
     
     @Override
+    @NonCPS
     @NonCPS String toString() {
         ObjectHelper.dump(this, include:['username'])
     }

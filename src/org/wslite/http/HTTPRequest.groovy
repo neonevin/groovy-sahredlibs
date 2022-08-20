@@ -86,6 +86,7 @@ class HTTPRequest {
     }
 
     @Override
+    @NonCPS
     String toString() {
         def excludes = ['isConnectTimeoutSet', 'isReadTimeoutSet',
                         'isUseCachesSet', 'isFollowRedirectsSet',

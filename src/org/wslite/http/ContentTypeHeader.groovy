@@ -68,6 +68,7 @@ class ContentTypeHeader {
     }
 
     @Override
+    @NonCPS
     String toString() {
         return contentType
     }

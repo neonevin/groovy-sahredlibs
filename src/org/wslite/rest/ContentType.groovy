@@ -46,6 +46,7 @@ enum ContentType {
     }
 
     @Override
+    @NonCPS
     String toString() {
         return contentTypes.first()
     }

@@ -39,7 +39,7 @@ class ContentBuilder {
         charset = defaultCharset
     }
 
-    ContentBuilder build(Closure content) {
+    @NonCPS ContentBuilder build(Closure content) {
         Closure c = content.clone()
         c.resolveStrategy = Closure.DELEGATE_FIRST
         c.delegate = this

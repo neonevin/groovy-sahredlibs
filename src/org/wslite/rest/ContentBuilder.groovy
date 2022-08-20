@@ -57,68 +57,68 @@ class ContentBuilder {
         return this
     }
 
-    void type(contentType) {
+    @NonCPS void type(contentType) {
         this.contentType = contentType?.toString()
     }
 
-    void charset(charset) {
+    @NonCPS void charset(charset) {
         this.charset = charset?.toString()
     }
 
-    void bytes(content) {
+    @NonCPS void bytes(content) {
         dataContentType = ContentType.BINARY
         data = content
     }
 
-    void text(content) {
+    @NonCPS void text(content) {
         dataContentType = ContentType.TEXT
         data = content?.toString()?.getBytes(getCharset())
     }
 
-    void urlenc(Map content) {
+    @NonCPS void urlenc(Map content) {
         dataContentType = ContentType.URLENC
         data = new URLParametersCodec().encode(content)?.getBytes(getCharset())
     }
 
-    void multipart(String name, byte[] content) {
+   @NonCPS  void multipart(String name, byte[] content) {
         multipart(name, content, null, null)
     }
 
-    void multipart(String name, byte[] content, String contentType) {
+    @NonCPS void multipart(String name, byte[] content, String contentType) {
         multipart(name, content, contentType, null)
     }
 
-    void multipart(String name, byte[] content, String contentType, String filename) {
+    @NonCPS void multipart(String name, byte[] content, String contentType, String filename) {
         dataContentType = ContentType.MULTIPART
         multipartData = multipartData ?: []
         multipartData << new BodyPart(name: name, content: content, contentType: contentType, filename: filename)
     }
 
-    void xml(Closure content) {
+    @NonCPS void xml(Closure content) {
         dataContentType = ContentType.XML
         xmlContentClosure = content
     }
 
-    void json() {
+    @NonCPS void json() {
         dataContentType = ContentType.JSON
         data = null
     }
 
-    void json(Map content) {
+   @NonCPS  void json(Map content) {
         dataContentType = ContentType.JSON
         data = JsonOutput.toJson(content)?.getBytes(getCharset())
     }
 
-    void json(List content) {
+    @NonCPS void json(List content) {
         dataContentType = ContentType.JSON
         data = JsonOutput.toJson(content)?.getBytes(getCharset())
     }
 
-    String getCharset() {
+    @NonCPS String getCharset() {
         return charset ?: HTTP.DEFAULT_CHARSET
     }
 
-    String getContentTypeHeader() {
+    @NonCPS String getContentTypeHeader() {
         ContentTypeHeader contentTypeHeader = new ContentTypeHeader(getContentType())
         if (boundary) {
             return contentTypeHeader.mediaType + '; boundary=' + boundary
@@ -129,7 +129,7 @@ class ContentBuilder {
         return contentTypeHeader.contentType
     }
 
-    private String getContentType() {
+    @NonCPS private String getContentType() {
         // Ignore defaultContentType if request includes multipart data
         if (multipartData && ContentType.MULTIPART.equals(dataContentType)) {
             return dataContentType.toString()
@@ -137,11 +137,11 @@ class ContentBuilder {
         return contentType ?: dataContentType.toString()
     }
 
-    private String closureToXmlString(content) {
+    @NonCPS private String closureToXmlString(content) {
         return XmlUtil.serialize(new StreamingMarkupBuilder().bind(content))
     }
 
-    private byte[] buildMultipartRequest(content) {
+    @NonCPS private byte[] buildMultipartRequest(content) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream()
 

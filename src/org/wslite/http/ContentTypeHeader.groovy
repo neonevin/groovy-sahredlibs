@@ -73,12 +73,12 @@ class ContentTypeHeader {
         return contentType
     }
 
-    private String parseMediaType(String contentType) {
+    @NonCPS private String parseMediaType(String contentType) {
         def m = contentType =~ MEDIATYPE_PATTERN
         return m.size() > 0 ? m[0][1] : null
     }
 
-    private String parseCharset(String contentType) {
+    @NonCPS private String parseCharset(String contentType) {
         def m = contentType =~ CHARSET_PATTERN
         return m.size() > 0 ? m[0][1] : null
     }

@@ -41,44 +41,44 @@ class RESTClient {
         this.httpClient.authorization = authorization
     }
 
-    Response head(Map params=[:], Closure content=null) {
+    @NonCPS Response head(Map params=[:], Closure content=null) {
         return executeMethod(HTTPMethod.HEAD, params, content)
     }
 
-    Response get(Map params=[:], Closure content=null) {
+    @NonCPS Response get(Map params=[:], Closure content=null) {
         return executeMethod(HTTPMethod.GET, params, content)
     }
 
-    Response delete(Map params=[:], Closure content=null) {
+    @NonCPS Response delete(Map params=[:], Closure content=null) {
         return executeMethod(HTTPMethod.DELETE, params, content)
     }
 
-    Response post(Closure content) {
+    @NonCPS Response post(Closure content) {
         return post([:], content)
     }
 
-    Response post(Map params=[:], Closure content=null) {
+    @NonCPS Response post(Map params=[:], Closure content=null) {
         return executeMethod(HTTPMethod.POST, params, content)
     }
 
-    Response put(Closure content) {
+   @NonCPS Response put(Closure content) {
         return put([:], content)
     }
 
-    Response put(Map params=[:], Closure content=null) {
+    @NonCPS Response put(Map params=[:], Closure content=null) {
         return executeMethod(HTTPMethod.PUT, params, content)
     }
 
-    Response patch(Closure content) {
+    @NonCPS Response patch(Closure content) {
         patch([:], content)
     }
 
-    Response options(Map params=[:], Closure content=null) {
+    @NonCPS Response options(Map params=[:], Closure content=null) {
         return executeMethod(HTTPMethod.OPTIONS, params, content)
     }
 
 
-    Response patch(Map params=[:], Closure content=null) {
+    @NonCPS Response patch(Map params=[:], Closure content=null) {
         Map newParams = new LinkedHashMap(params ?: [:])
         if (newParams.headers) {
             newParams.headers[HTTP.X_HTTP_METHOD_OVERRIDE_HEADER] = HTTPMethod.PATCH.toString()
@@ -90,11 +90,11 @@ class RESTClient {
         return executeMethod(HTTPMethod.POST, newParams, content)
     }
 
-    private Response executeMethod(HTTPMethod method, Map params) {
+    @NonCPS private Response executeMethod(HTTPMethod method, Map params) {
         executeMethod(method, params, null)
     }
 
-    private Response executeMethod(HTTPMethod method, Map params, Closure content) {
+    @NonCPS private Response executeMethod(HTTPMethod method, Map params, Closure content) {
         Map requestParams = createRequestParams(params)
         setDefaultAcceptParam(requestParams)
         byte[] data = null
@@ -116,7 +116,7 @@ class RESTClient {
         return buildResponse(httpRequest, httpResponse)
     }
 
-    private createRequestParams(Map params) {
+    @NonCPS private createRequestParams(Map params) {
         Map requestParams = new LinkedHashMap(params ?: [:])
         Map headerMap = new TreeMap(String.CASE_INSENSITIVE_ORDER)
         if (params.headers) {
@@ -126,7 +126,7 @@ class RESTClient {
         return requestParams
     }
 
-    private Response buildResponse(httpRequest, httpResponse) {
+   @NonCPS  private Response buildResponse(httpRequest, httpResponse) {
         Response response
         try {
             response = responseBuilder.build(httpRequest, httpResponse)
@@ -136,14 +136,14 @@ class RESTClient {
         return response
     }
 
-    private void setDefaultAcceptParam(params) {
+    @NonCPS private void setDefaultAcceptParam(params) {
         if (!params.containsKey('accept') && defaultAcceptHeader) {
             params.headers[HTTP.ACCEPT_HEADER] = (defaultAcceptHeader instanceof ContentType) ?
                              defaultAcceptHeader.acceptHeader : defaultAcceptHeader.toString()
         }
     }
 
-    private void setDefaultContentHeader(params, contentType) {
+    @NonCPS private void setDefaultContentHeader(params, contentType) {
         if (!params.headers.containsKey(HTTP.CONTENT_TYPE_HEADER)) {
             params.headers[HTTP.CONTENT_TYPE_HEADER] = contentType
         }

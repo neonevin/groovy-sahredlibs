@@ -41,47 +41,47 @@ class HTTPRequest {
     boolean isFollowRedirectsSet
     boolean isSSLTrustAllCertsSet
 
-    void setHeaders(Map map) {
+    @NonCPS void setHeaders(Map map) {
         headers.putAll(map)
     }
 
-    void setConnectTimeout(int connectTimeout) {
+    @NonCPS void setConnectTimeout(int connectTimeout) {
         this.connectTimeout = connectTimeout
         isConnectTimeoutSet = true
     }
 
-    void setReadTimeout(int readTimeout) {
+   @NonCPS  void setReadTimeout(int readTimeout) {
         this.readTimeout = readTimeout
         isReadTimeoutSet = true
     }
 
-    void setUseCaches(boolean useCaches) {
+    @NonCPS void setUseCaches(boolean useCaches) {
         this.useCaches = useCaches
         isUseCachesSet = true
     }
 
-    void setFollowRedirects(boolean followRedirects) {
+    @NonCPS void setFollowRedirects(boolean followRedirects) {
         this.followRedirects = followRedirects
         isFollowRedirectsSet = true
     }
 
-    void setSslTrustAllCerts(boolean sslTrustAllCerts) {
+    @NonCPS void setSslTrustAllCerts(boolean sslTrustAllCerts) {
         this.sslTrustAllCerts = sslTrustAllCerts
         isSSLTrustAllCertsSet = true
     }
 
-    String getContentAsString() {
+    @NonCPS String getContentAsString() {
         if (!data) {
             return ''
         }
         return new String(data, getCharset())
     }
 
-    private String getCharset() {
+    @NonCPS private String getCharset() {
         return getContentTypeHeader().charset ?: HTTP.DEFAULT_CHARSET
     }
 
-    private ContentTypeHeader getContentTypeHeader() {
+    @NonCPS private ContentTypeHeader getContentTypeHeader() {
         return new ContentTypeHeader(headers[HTTP.CONTENT_TYPE_HEADER])
     }
 

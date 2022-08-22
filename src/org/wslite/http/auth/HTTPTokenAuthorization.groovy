@@ -29,20 +29,20 @@ class HTTPTokenAuthorization implements HTTPAuthorization {
         setToken(token)
     }
 
-    void setToken(String token) {
+    @NonCPS void setToken(String token) {
         this.token = token
         authorization = null
     }
 
-    String getToken() {
+    @NonCPS String getToken() {
         return token
     }
 
-    void authorize(conn) {
+    @NonCPS void authorize(conn) {
         conn.addRequestProperty(HTTP.AUTHORIZATION_HEADER, getAuthorization())
     }
 
-    private String getAuthorization() {
+    @NonCPS private String getAuthorization() {
         if (!authorization) {
             authorization = token
         }

@@ -40,7 +40,7 @@ class Response {
 
     private Map parsedResponseContent = [:]
 
-    Response(HTTPRequest httpRequest, HTTPResponse httpResponse) {
+    @NonCPS Response(HTTPRequest httpRequest, HTTPResponse httpResponse) {
         this.request = httpRequest
         this.response = httpResponse
     }
@@ -54,15 +54,15 @@ class Response {
     }
     /* implementing properties and methods from HTTPResponse as @delegate doesn't work in Jenkins CPS */
     // start
-    Map getHeaders() {
+    @NonCPS Map getHeaders() {
         return headers.asImmutable()
     }
 
-    void setHeaders(Map map) {
+    @NonCPS void setHeaders(Map map) {
         headers.putAll(map)
     }
 
-    String getContentAsString() {
+    @NonCPS String getContentAsString() {
         if (!data) {
             return ''
         }

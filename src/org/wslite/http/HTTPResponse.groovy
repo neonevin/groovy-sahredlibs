@@ -32,15 +32,15 @@ class HTTPResponse {
     Map headers = new TreeMap(String.CASE_INSENSITIVE_ORDER)
     byte[] data
 
-    Map getHeaders() {
+   @NonCPS  Map getHeaders() {
         return headers.asImmutable()
     }
 
-    void setHeaders(Map map) {
+    @NonCPS void setHeaders(Map map) {
         headers.putAll(map)
     }
 
-    String getContentAsString() {
+    @NonCPS String getContentAsString() {
         if (!data) {
             return ''
         }

@@ -16,7 +16,7 @@ package org.wslite.rest
 
 class URLParametersCodec {
 
-    String encode(Map params) {
+    @NonCPS String encode(Map params) {
         if (!(params instanceof Map)) {
             return null
         }
@@ -33,7 +33,7 @@ class URLParametersCodec {
         return encodedList.join('&')
     }
 
-    Map decode(String urlEncodedParams) {
+    @NonCPS Map decode(String urlEncodedParams) {
         Map params = [:]
         def pairs = urlEncodedParams.split('&')
         for (pair in pairs) {
@@ -56,7 +56,7 @@ class URLParametersCodec {
         return params
     }
 
-    private static String urlEncodePair(key, value) {
+    @NonCPS private static String urlEncodePair(key, value) {
         if (!key) {
             return ''
         }

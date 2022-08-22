@@ -18,7 +18,7 @@ import java.util.regex.Pattern
 
 class ContentTypeHeader {
 
-    private final static String TOKEN = '''(?x)
+    @NonCPS private final static String TOKEN = '''(?x)
         [
             \\p{ASCII}
             &&
@@ -44,11 +44,11 @@ class ContentTypeHeader {
             ]
         ]+'''
 
-    private final static Pattern MEDIATYPE_PATTERN = Pattern.compile(
+    @NonCPS private final static Pattern MEDIATYPE_PATTERN = Pattern.compile(
         '(' + TOKEN + '/' + TOKEN + ')'
     )
 
-    private final static Pattern CHARSET_PATTERN = Pattern.compile(
+    @NonCPS private final static Pattern CHARSET_PATTERN = Pattern.compile(
         '(?i)charset\\s*=\\s*' +
           '[\"|\']*' +
           '(' + TOKEN + ')' +
@@ -59,7 +59,7 @@ class ContentTypeHeader {
     final String mediaType
     final String charset
 
-    ContentTypeHeader(final String contentType) {
+     ContentTypeHeader(final String contentType) {
         if (contentType) {
             this.contentType = contentType
             this.mediaType = parseMediaType(contentType)

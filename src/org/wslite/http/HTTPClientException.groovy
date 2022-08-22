@@ -45,11 +45,11 @@ public class HTTPClientException extends RuntimeException {
         this.response = httpResponse;
     }
     
-    public HTTPRequest getRequest() {
+    @NonCPS public HTTPRequest getRequest() {
         return request;
     }
     
-    public HTTPResponse getResponse() {
+   @NonCPS  public HTTPResponse getResponse() {
         return response;
     }
 

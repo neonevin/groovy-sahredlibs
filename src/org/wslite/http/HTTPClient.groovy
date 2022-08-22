@@ -43,7 +43,7 @@ class HTTPClient {
          this.httpConnectionFactory = httpConnectionFactory
     }
 
-    HTTPResponse execute(HTTPRequest request) {
+    @NonCPS HTTPResponse execute(HTTPRequest request) {
         if (!(request?.url && request?.method)) {
             throw new IllegalArgumentException('HTTP Request must contain a url and method')
         }
@@ -67,7 +67,7 @@ class HTTPClient {
         return response
     }
 
-    private createConnection(HTTPRequest request) {
+    @NonCPS private createConnection(HTTPRequest request) {
         if (isSecureConnectionRequest(request)) {
             def usedProxy = getProxy(request, true)
             if (shouldTrustAllSSLCerts(request)) {
@@ -90,19 +90,19 @@ class HTTPClient {
         return httpConnectionFactory.getConnection(request.url, getProxy(request, false))
     }
 
-    private boolean isSecureConnectionRequest(HTTPRequest request) {
+    @NonCPS private boolean isSecureConnectionRequest(HTTPRequest request) {
         return request.url.protocol.toLowerCase() == 'https'
     }
 
-    private boolean shouldTrustAllSSLCerts(HTTPRequest request) {
+    @NonCPS private boolean shouldTrustAllSSLCerts(HTTPRequest request) {
         return request.isSSLTrustAllCertsSet ? request.sslTrustAllCerts : sslTrustAllCerts
     }
 
-    private boolean shouldTrustSSLCertsUsingTrustStore(HTTPRequest request) {
+    @NonCPS private boolean shouldTrustSSLCertsUsingTrustStore(HTTPRequest request) {
         return request.sslTrustStoreFile !=null || sslTrustStoreFile !=null
     }
 
-    private void setupConnection(conn, HTTPRequest request) {
+   @NonCPS  private void setupConnection(conn, HTTPRequest request) {
         conn.setRequestMethod(request.method.toString())
         conn.setConnectTimeout(request.isConnectTimeoutSet ? request.connectTimeout : connectTimeout)
         conn.setReadTimeout(request.isReadTimeoutSet ? request.readTimeout : readTimeout)
@@ -119,7 +119,7 @@ class HTTPClient {
         }
     }
 
-    private void setRequestHeaders(conn, request) {
+   @NonCPS  private void setRequestHeaders(conn, request) {
         for (entry in request.headers) {
             setConnectionRequestProperty(conn, entry.key, entry.value)
         }
@@ -130,23 +130,23 @@ class HTTPClient {
         }
     }
 
-    private void setConnectionRequestProperty(conn, String key, List values) {
+    @NonCPS private void setConnectionRequestProperty(conn, String key, List values) {
         for (val in values) {
             setConnectionRequestProperty(conn, key, val.toString())
         }
     }
 
-    private void setConnectionRequestProperty(conn, String key, String value) {
+    @NonCPS private void setConnectionRequestProperty(conn, String key, String value) {
         conn.setRequestProperty(key, value)
     }
 
-    private void setAuthorizationHeader(conn) {
+    @NonCPS private void setAuthorizationHeader(conn) {
         if (authorization) {
             authorization.authorize(conn)
         }
     }
 
-    private HTTPResponse buildResponse(conn, responseStream) {
+    @NonCPS private HTTPResponse buildResponse(conn, responseStream) {
         def response = new HTTPResponse()
         response.data = getResponseContent(responseStream, conn.contentEncoding)
         response.statusCode = conn.responseCode
@@ -164,14 +164,14 @@ class HTTPClient {
         return response
     }
 
-    private getResponseContent(inputStream, contentEncoding) {
+    @NonCPS private getResponseContent(inputStream, contentEncoding) {
         if (!inputStream) {
             return null
         }
         return (contentEncoding == 'gzip') ? new GZIPInputStream(inputStream)?.bytes : inputStream.bytes
     }
 
-    private Map headersToMap(conn) {
+    @NonCPS private Map headersToMap(conn) {
         def headers = [:]
         for (entry in conn.headerFields) {
             headers[entry.key ?: ''] = entry.value.size() > 1 ? entry.value : entry.value[0]
@@ -192,7 +192,7 @@ class HTTPClient {
      * @param useHttpsProxy If {@code true}, the HTTPS proxy is returned, otherwise
      * the method returns the standard HTTP one.
      */
-    Proxy getProxy(request, useHttpsProxy) {
+    @NonCPS Proxy getProxy(request, useHttpsProxy) {
         return request.proxy ?: proxy ?: loadSystemProxy(useHttpsProxy) ?: Proxy.NO_PROXY
     }
 
@@ -203,7 +203,7 @@ class HTTPClient {
      * {@code null}.
      * @param useHttpsProxy {@code true} if you want the HTTPS proxy, otherwise {@code false}.
      */
-    private Proxy loadSystemProxy(boolean useHttpsProxy) {
+    @NonCPS private Proxy loadSystemProxy(boolean useHttpsProxy) {
         def propertyPrefix = useHttpsProxy ? "https" : "http"
         def proxyHost = System.getProperty("${propertyPrefix}.proxyHost")
         if (!proxyHost) return null

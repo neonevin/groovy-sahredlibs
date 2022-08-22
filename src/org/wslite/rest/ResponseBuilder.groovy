@@ -39,7 +39,7 @@ class ResponseBuilder {
         return response
     }
 
-    private boolean isTextResponse(HTTPResponse httpResponse) {
+    @NonCPS private boolean isTextResponse(HTTPResponse httpResponse) {
         def contentType = contentTypeNoParameter(httpResponse)
         return contentType?.startsWith('text/') ||
                 ContentType.TEXT.contains(contentType) ||
@@ -48,26 +48,26 @@ class ResponseBuilder {
                 ContentType.JSON.contains(contentType)
     }
 
-    private boolean isXmlResponse(HTTPResponse httpResponse) {
+   @NonCPS  private boolean isXmlResponse(HTTPResponse httpResponse) {
         return ContentType.XML.contains(contentTypeNoParameter(httpResponse))
     }
 
-    private boolean isJsonResponse(HTTPResponse httpResponse) {
+   @NonCPS  private boolean isJsonResponse(HTTPResponse httpResponse) {
         return ContentType.JSON.contains(contentTypeNoParameter(httpResponse))
     }
 
-    private parseXmlContent(String content) {
+    @NonCPS private parseXmlContent(String content) {
         SAXParserFactory factory = FactorySupport.createSaxParserFactory();
         factory.setNamespaceAware(true);
         factory.setValidating(false);
         return new XmlSlurper(factory.newSAXParser()).parseText(content)
     }
 
-    private parseJsonContent(String content) {
+   @NonCPS  private parseJsonContent(String content) {
         return new JsonSlurper().parseText(content)
     }
 
-    private String contentTypeNoParameter(HTTPResponse httpResponse) {
+    @NonCPS private String contentTypeNoParameter(HTTPResponse httpResponse) {
         return new ContentTypeHeader(httpResponse.contentType).mediaType
     }
 }

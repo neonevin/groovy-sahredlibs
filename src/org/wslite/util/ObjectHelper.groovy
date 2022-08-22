@@ -20,7 +20,7 @@ class ObjectHelper {
         dump([:], delegate)
     }
 
-    static String dump(Map fieldList, Object delegate) {
+    @NonCPS static String dump(Map fieldList, Object delegate) {
         if (delegate == null) {
             return 'null'
         }

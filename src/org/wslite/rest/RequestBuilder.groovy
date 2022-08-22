@@ -40,7 +40,7 @@ class RequestBuilder {
         return request
     }
 
-    private URL buildURL(url, path, query) {
+    @NonCPS private URL buildURL(url, path, query) {
         def target = new StringBuilder(url)
         if (path && path != '/') {
             url.endsWith('/') ?: target.append('/')

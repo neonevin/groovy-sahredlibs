@@ -31,29 +31,29 @@ class HTTPBasicAuthorization implements HTTPAuthorization {
         this.password = password
     }
 
-    void setUsername(String username) {
+    @NonCPS void setUsername(String username) {
         this.username = username
         authorization = null
     }
 
-    void setPassword(String password) {
+    @NonCPS void setPassword(String password) {
         this.password = password
         authorization = null
     }
 
-    String getUsername() {
+    @NonCPS String getUsername() {
         return username
     }
 
-    String getPassword() {
+    @NonCPS String getPassword() {
         return password
     }
 
-    void authorize(conn) {
+    @NonCPS void authorize(conn) {
         conn.addRequestProperty(HTTP.AUTHORIZATION_HEADER, getAuthorization())
     }
 
-    private String getAuthorization() {
+    @NonCPS private String getAuthorization() {
         if (!authorization) {
             authorization = 'Basic ' + "${username}:${password}".toString().bytes.encodeBase64()
         }

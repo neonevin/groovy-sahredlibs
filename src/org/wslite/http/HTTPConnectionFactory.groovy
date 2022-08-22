@@ -20,11 +20,11 @@ import java.security.SecureRandom
 
 class HTTPConnectionFactory {
 
-    def getConnection(URL url, Proxy proxy=Proxy.NO_PROXY) {
+    @nonCPS def getConnection(URL url, Proxy proxy=Proxy.NO_PROXY) {
         return url.openConnection(proxy)
     }
 
-    def getConnectionTrustAllSSLCerts(URL url, Proxy proxy=Proxy.NO_PROXY) {
+    @NonCPS def getConnectionTrustAllSSLCerts(URL url, Proxy proxy=Proxy.NO_PROXY) {
         def trustingTrustManager = [
                 getAcceptedIssuers: {},
                 checkClientTrusted: { arg0, arg1 -> },
@@ -38,7 +38,7 @@ class HTTPConnectionFactory {
         return conn
     }
 
-    def getConnectionUsingTrustStore(URL url, String trustStoreFile, String trustStorePassword,
+    @NonCPS def getConnectionUsingTrustStore(URL url, String trustStoreFile, String trustStorePassword,
                                      Proxy proxy=Proxy.NO_PROXY) {
         InputStream tsFile = new FileInputStream(new File(trustStoreFile))
         char[] tsPassword = trustStorePassword?.getChars()

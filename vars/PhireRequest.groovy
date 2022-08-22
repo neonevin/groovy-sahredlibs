@@ -55,9 +55,9 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
 }
 
 //def call(String userid, String password) {
-def call(String userid, String password) {
+def call(script) {
     //JsonBuilder builder=buildMessage()
-    JsonBuilder builder=readEnv()
+    JsonBuilder builder=readEnv(script)
     println ""
     println builder.toString()
 

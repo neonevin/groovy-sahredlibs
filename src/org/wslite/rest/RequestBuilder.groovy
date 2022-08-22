@@ -38,7 +38,7 @@ class RequestBuilder {
         }
         request.data = data
         return request
-    }
+    } 
 
     @NonCPS private URL buildURL(url, path, query) {
         def target = new StringBuilder(url)

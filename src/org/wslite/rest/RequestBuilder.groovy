@@ -20,7 +20,7 @@ class RequestBuilder {
 
     URLParametersCodec urlParametersCodec = new URLParametersCodec()
 
-    HTTPRequest build(HTTPMethod method, String url, Map params, byte[] data) {
+    @NonCPS HTTPRequest build(HTTPMethod method, String url, Map params, byte[] data) {
         if (!method || !url) {
             throw new IllegalArgumentException('URL and Method are required')
         }

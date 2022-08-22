@@ -29,6 +29,37 @@ def buildMessage() {
 
 @NonCPS
 def sendMessage(JsonBuilder jsonMsg,String userid, String password){
+
+    //RESTClient client = new RESTClient("http://localhost:8080")
+  /*  try{
+        def rest = new RESTClient('curl https://typedwebhook.tools/webhook/6164fde1-da82-4970-a481-6edf3215b546')
+       // String token = 'mytoken'
+        def response = rest.post(
+        path: 'services/user',
+        headers: [Authorization:"Bearer ${token}"],
+        body: [name:"josdem",email:"joseluis.delacruz@gmail.com"],
+        requestContentType: 'application/json' )
+        response.responseData
+    } catch(Exception ex) {
+        log.warn "Error: ${ex.message}"
+    }*/
+/*
+    def client = new RESTClient("http://api.twitter.com/1/")
+    def response = client.get(path:'/users/show.json', query:[screen_name:'jwagenleitner', include_entities:true])
+
+    assert 200 == response.statusCode
+    assert "John Wagenleitner" == response.json.name
+
+    def client2 = new RESTClient("https://typedwebhook.tools/webhook/6164fde1-da82-4970-a481-6edf3215b546")
+    def response2 = client2.get(path:'/users/show.json', query:[screen_name:'jwagenleitner', include_entities:true])
+
+    assert 200 == response2.statusCode
+    
+    //assert "John Wagenleitner" == response.json.name
+*/
+    //def CR_TASK_NEXT_STEP_REQ =[ 'PHI_DOMAIN_ID': "", 'PHI_CR_TYPE': "", 'PHI_CR_NUM': "", 'DEL_JIRA_STATUS':"",  'PHI_ASSIGN_TO':"", 'PHI_MIGR_TYPE':""]
+    //def client = new RESTClient("https://typedwebhook.tools/webhook/b802d188-fce9-438a-a51b-d426fff33216")
+    
      println "in send message 1"
 
     def client = new RESTClient("http://140.238.207.38:8000/PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
@@ -37,7 +68,6 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     }catch (Exception e){
         println "auth fail"
     }
-    def jsonStr=jsonMsg.toString()
     println "in send message 2"
     def response = client.post() {
         type "application/json"  // String or ContentType
@@ -49,7 +79,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
         //json CR_TASK_NEXT_STEP_REQ
         //text(CR_TASK_NEXT_STEP_REQ)
         //text(groovy.json.JsonOutput.toJson(jsonMsg))
-        text(jsonStr)
+        text(jsonMsg.toString())
     }
         println "after text ()"
         println jsonMsg.toString()

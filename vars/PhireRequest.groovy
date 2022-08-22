@@ -73,13 +73,14 @@ def call(String phireid) {
     response.content
 }*/
 @NonCPS
-def readEnv(phireid){
+def readEnv(String phireid){
     //println ${script.env.jstatus} 
     //println ${script.env.juser}
     //println ${script.env.JIRA_ISSUE_KEY}
- 
+    println "readenv " phireid
     def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','N','S',phireid,'nprasannan' )
     def builder = new JsonBuilder(cr_next)
+    println builder.toString()
 }
 
 public String getGroovyVersion() {

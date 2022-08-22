@@ -55,9 +55,9 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
 }
 
 //def call(String userid, String password) {
-def call(script) {
+def call(String phireid) {
     //JsonBuilder builder=buildMessage()
-    JsonBuilder builder=readEnv(script)
+    JsonBuilder builder=readEnv(phireid)
     println ""
     println builder.toString()
 
@@ -73,12 +73,12 @@ def call(script) {
     response.content
 }*/
 @NonCPS
-def readEnv(script){
-    println ${script.env.jstatus} 
-    println ${script.env.juser}
-    println ${script.env.JIRA_ISSUE_KEY}
-
-    def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','N','S','PS02-1','nprasannan' )
+def readEnv(phireid){
+    //println ${script.env.jstatus} 
+    //println ${script.env.juser}
+    //println ${script.env.JIRA_ISSUE_KEY}
+ 
+    def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','N','S',phireid,'nprasannan' )
     def builder = new JsonBuilder(cr_next)
 }
 

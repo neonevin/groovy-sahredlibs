@@ -24,7 +24,7 @@ import groovy.xml.FactorySupport;
 
 class ResponseBuilder {
 
-    Response build(HTTPRequest httpRequest, HTTPResponse httpResponse) {
+    @NonCPS Response build(HTTPRequest httpRequest, HTTPResponse httpResponse) {
         Response response = new Response(httpRequest, httpResponse)
         if (isTextResponse(httpResponse)) {
             String responseText = httpResponse.getContentAsString()

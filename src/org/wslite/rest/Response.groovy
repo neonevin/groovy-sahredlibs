@@ -45,11 +45,11 @@ class Response {
         this.response = httpResponse
     }
 
-    def propertyMissing(String name) {
+    @NonCPS def propertyMissing(String name) {
         return parsedResponseContent[name]
     }
 
-    def propertyMissing(String name, value) {
+    @NonCPS def propertyMissing(String name, value) {
         parsedResponseContent[name] = value
     }
     /* implementing properties and methods from HTTPResponse as @delegate doesn't work in Jenkins CPS */

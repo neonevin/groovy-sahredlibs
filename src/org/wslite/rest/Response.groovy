@@ -40,7 +40,7 @@ class Response {
 
     private Map parsedResponseContent = [:]
 
-    @NonCPS Response(HTTPRequest httpRequest, HTTPResponse httpResponse) {
+    Response(HTTPRequest httpRequest, HTTPResponse httpResponse) {
         this.request = httpRequest
         this.response = httpResponse
     }

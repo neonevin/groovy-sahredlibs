@@ -55,7 +55,7 @@ enum ContentType {
         return contentTypes.join(', ')
     }
 
-    @NonCPS private ContentType(contentTypes) {
+     private ContentType(contentTypes) {
         this.contentTypes = contentTypes
     }
 

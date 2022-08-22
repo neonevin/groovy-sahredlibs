@@ -74,9 +74,9 @@ def call(script) {
 }*/
 @NonCPS
 def readEnv(script){
-    println $jstatus 
-    println $juser
-    println $JIRA_ISSUE_KEY
+    println ${script.env.jstatus} 
+    println ${script.env.juser}
+    println ${script.env.JIRA_ISSUE_KEY}
 
     def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','N','S','PS02-1','nprasannan' )
     def builder = new JsonBuilder(cr_next)

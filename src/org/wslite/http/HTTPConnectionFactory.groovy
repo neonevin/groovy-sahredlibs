@@ -20,7 +20,7 @@ import java.security.SecureRandom
 
 class HTTPConnectionFactory {
 
-    @nonCPS 
+    @NonCPS 
     def getConnection(URL url, Proxy proxy=Proxy.NO_PROXY) {
         return url.openConnection(proxy)
     }

@@ -30,7 +30,7 @@ enum ContentType {
         return contentTypes
     }
 
-    boolean contains(String contentType) {
+    @NonCPS boolean contains(String contentType) {
         boolean result = contentType in contentTypes
         if (!result) {
             switch (this) {
@@ -51,11 +51,11 @@ enum ContentType {
         return contentTypes.first()
     }
 
-    String getAcceptHeader() {
+    @NonCPS String getAcceptHeader() {
         return contentTypes.join(', ')
     }
 
-    private ContentType(contentTypes) {
+    @NonCPS private ContentType(contentTypes) {
         this.contentTypes = contentTypes
     }
 

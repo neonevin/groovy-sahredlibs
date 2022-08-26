@@ -84,7 +84,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
 def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String phiMigrType, String tktId, String lastCmmt, String rqstUsr,  String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
-    if ((phireTktId) && (phireTktId.indexof("-") != -1)) {
+    if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {
         
         phiDomainId = phireTktId.split('-')[0]
         phireId = phireTktId.split('-')[1]

@@ -84,7 +84,8 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
 def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String phiMIgrType, String tktId, String lastCmmt, String rqstUsr,  String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
-    if (phireTktId) {
+    if ((phireTktId) && (phireTktId.indexof('-' != -1))) {
+        
         phiDomainId = phireTktId.split('-')[0]
         phireId = phireTktId.split('-')[1]
     } else {
@@ -133,5 +134,5 @@ public String getGroovyVersion() {
         return GroovySystem.version
 }
 
-call('usr', 'pwd')
+call('env.USERNAME', 'env.USERPASS', 'PHIRE_NUM', 'TICKET_STATUS', 'ISSUE_ASSIGNEE', 'S', 'TICKET_ID', 'LAST_COMMENT_BODY', 'REQUEST_USER', 'http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/')
 

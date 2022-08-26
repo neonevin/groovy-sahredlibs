@@ -8,18 +8,44 @@ import org.wslite.rest.RESTClient
 import org.wslite.http.auth.*
 
 class crNextStep {
-    def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_TYPE: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_CHANGE_ASSIGN:"",PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"",DTTL_REQUESTER_ID:""]
-
-    crNextStep(phi_domain_id, phi_cr_type, phi_cr_num, del_jira_status,phi_assign_to,dttl_chg_assgn,phi_migr_type,dttl_ticket_id,dttl_reqstr_id) {
-        this.CR_TASK_NEXT_STEP_REQ.PHI_DOMAIN_ID=phi_domain_id
-        this.CR_TASK_NEXT_STEP_REQ.PHI_CR_TYPE=phi_cr_type
-        this.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM=phi_cr_num
-        this.CR_TASK_NEXT_STEP_REQ.DEL_JIRA_STATUS=del_jira_status
-        this.CR_TASK_NEXT_STEP_REQ.PHI_ASSIGN_TO=phi_assign_to
-        this.DTTL_CHANGE_ASSIGN=dttl_chg_assgn
-        this.CR_TASK_NEXT_STEP_REQ.PHI_MIGR_TYPE=phi_migr_type
-        this.DTTL_TICKET_ID=dttl_ticket_id
-        this.DTTL_REQUESTER_ID=dttl_reqstr_id
+    //def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DTTL_TICKET_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_CHANGE_ASSIGN:"",PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"",DTTL_REQUESTER_ID:"", PHI_CR_TYPE: "",]
+    def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:"",DTTL_TICKET_ID:"",DTTL_REQUESTER_ID:""]
+    crNextStep(phiDomainId, phiCrNum, tktStatus, phiAssignee, phiMigrType, ticketId, rqstUsr) {
+        if (phiDomainId){
+            this.CR_TASK_NEXT_STEP_REQ.PHI_DOMAIN_ID=phiDomainId
+        } else{
+            this.CR_TASK_NEXT_STEP_REQ.PHI_DOMAIN_ID=" "
+        }
+        if (phiCrNum) {
+            this.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM=phiCrNum
+        } else {
+            this.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM=" "
+        }
+        if (tktStatus){
+            this.CR_TASK_NEXT_STEP_REQ.DEL_JIRA_STATUS=tktStatus
+        } else {
+            this.CR_TASK_NEXT_STEP_REQ.DEL_JIRA_STATUS=" "
+        }
+        if (phiAssignee) {
+            this.CR_TASK_NEXT_STEP_REQ.PHI_ASSIGN_TO=phiAssignee
+        } else {
+            this.CR_TASK_NEXT_STEP_REQ.PHI_ASSIGN_TO=" "
+        }
+        if (phiMigrType) {
+            this.CR_TASK_NEXT_STEP_REQ.PHI_MIGR_TYPE=phiMigrType
+        } else {
+            this.CR_TASK_NEXT_STEP_REQ.PHI_MIGR_TYPE='S'
+        }
+        if (ticketId) {
+            this.DTTL_TICKET_ID=ticketId
+        } else {
+            this.DTTL_TICKET_ID=" "
+        }
+        if (reqstrId) {
+            this.DTTL_REQUESTER_ID=rqstUsr
+        } else {
+            this.DTTL_REQUESTER_ID=" "
+        }
     }
 }
 
@@ -31,10 +57,11 @@ def buildMessage() {
 }
 
 @NonCPS
-def sendMessage(JsonBuilder jsonMsg,String userid, String password){
+def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
      println "in send message 1"
 
-    def client = new RESTClient("http://140.238.207.38:8000/PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
+    //def client = new RESTClient("http://140.238.207.38:8000/PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
+    def client = new RESTClient(url)
     try{
         client.authorization = new HTTPBasicAuthorization(userid, password)
     }catch (Exception e){
@@ -54,12 +81,26 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password){
     println response.text
 }
 
-//def call(String userid, String password) {
-def call(String phireid) {
+def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, , String tktId, String lastCmmt, String rqstUsr,  String url) {
+//def call(String phireid) {
     //JsonBuilder builder=buildMessage()
-    JsonBuilder builder=readEnv(phireid)
-    println ""
+    if (phireTktId) {
+        phiDomainId = phireTktId.split('-')[0]
+        phireId = phireTktId.split('-')[1]
+    } else {
+        phiDomainId=""
+        phireId=""
+    }
+    
+                    //crNextStep(phiDomainId, phiCrNum, tktStatus, phiAssignee, phiMigrType, ticketId, reqstrId)
+    def cr_next = new crNextStep(phiDomainId, phireId, tktStatus, tktAssignee, phiMigrType, tktId,'S', rqstUsr)
+    def builder = new JsonBuilder(cr_next)
     println builder.toString()
+
+    //JsonBuilder builder=readEnv(phireid)
+    println "Calling send Message"
+    sendMessage(builder, userid, password, url)
+    //println builder.toString()
 
     //sendMessage(builder,userid,password)
 }
@@ -82,6 +123,7 @@ def readEnv(String phireid){
     def builder = new JsonBuilder(cr_next)
     println builder.toString()
 }
+
 
 public String getGroovyVersion() {
         try {

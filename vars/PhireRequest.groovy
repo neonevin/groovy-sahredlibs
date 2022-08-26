@@ -41,7 +41,7 @@ class crNextStep {
         } else {
             this.CR_TASK_NEXT_STEP_REQ.DTTL_TICKET_ID=" "
         }
-        if (reqstrId) {
+        if (rqstUsr) {
             this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUESTER_ID=rqstUsr
         } else {
             this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUESTER_ID=" "

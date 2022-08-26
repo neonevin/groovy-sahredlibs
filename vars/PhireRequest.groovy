@@ -81,7 +81,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     println response.text
 }
 
-def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String phiMIgrType, String tktId, String lastCmmt, String rqstUsr,  String url) {
+def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String phiMigrType, String tktId, String lastCmmt, String rqstUsr,  String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
     if ((phireTktId) && (phireTktId.indexof('-' != -1))) {

@@ -37,14 +37,14 @@ class crNextStep {
             this.CR_TASK_NEXT_STEP_REQ.PHI_MIGR_TYPE='S'
         }
         if (ticketId) {
-            this.DTTL_TICKET_ID=ticketId
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_TICKET_ID=ticketId
         } else {
-            this.DTTL_TICKET_ID=" "
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_TICKET_ID=" "
         }
         if (reqstrId) {
-            this.DTTL_REQUESTER_ID=rqstUsr
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUESTER_ID=rqstUsr
         } else {
-            this.DTTL_REQUESTER_ID=" "
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUESTER_ID=" "
         }
     }
 }

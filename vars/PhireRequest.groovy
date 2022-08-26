@@ -81,7 +81,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     println response.text
 }
 
-def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, , String tktId, String lastCmmt, String rqstUsr,  String url) {
+def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String phiMIgrType, String tktId, String lastCmmt, String rqstUsr,  String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
     if (phireTktId) {
@@ -93,7 +93,7 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
     }
     
                     //crNextStep(phiDomainId, phiCrNum, tktStatus, phiAssignee, phiMigrType, ticketId, reqstrId)
-    def cr_next = new crNextStep(phiDomainId, phireId, tktStatus, tktAssignee, phiMigrType, tktId,'S', rqstUsr)
+    def cr_next = new crNextStep(phiDomainId, phireId, tktStatus, tktAssignee, phiMigrType, tktId, rqstUsr)
     def builder = new JsonBuilder(cr_next)
     println builder.toString()
 

@@ -8,9 +8,9 @@ import org.wslite.rest.RESTClient
 import org.wslite.http.auth.*
 
 class crNextStep {
-    //def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DTTL_TICKET_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_CHANGE_ASSIGN:"",PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"",DTTL_REQUESTER_ID:"", PHI_CR_TYPE: "",]
-    def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:"",DTTL_TICKET_ID:"",DTTL_REQUESTER_ID:""]
-    crNextStep(phiDomainId, phiCrNum, tktStatus, phiAssignee, phiMigrType, ticketId, rqstUsr) {
+    def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DTTL_TICKET_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_ASSIGN_EMAIL:"", PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"", DTTL_REQUESTER_ID:"", DTTL_REQUEST_EMAIL:""]
+    //def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DEL_JIRA_STATUS:"",  PHI_ASSIGN_TO:"", PHI_MIGR_TYPE:"",DTTL_TICKET_ID:"",DTTL_REQUESTER_ID:""]
+    crNextStep(phiDomainId, phiCrNum, tktStatus, phiAssignee, assigneeEmail, phiMigrType, ticketId, rqstUsr, rqstEmail) {
         if (phiDomainId){
             this.CR_TASK_NEXT_STEP_REQ.PHI_DOMAIN_ID=phiDomainId
         } else{
@@ -31,6 +31,11 @@ class crNextStep {
         } else {
             this.CR_TASK_NEXT_STEP_REQ.PHI_ASSIGN_TO=" "
         }
+        if (assigneeEmail) {
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_ASSIGN_EMAIL=assigneeEmail
+        } else {
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_ASSIGN_EMAIL=" "
+        }
         if (phiMigrType) {
             this.CR_TASK_NEXT_STEP_REQ.PHI_MIGR_TYPE=phiMigrType
         } else {
@@ -45,6 +50,11 @@ class crNextStep {
             this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUESTER_ID=rqstUsr
         } else {
             this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUESTER_ID=" "
+        }
+        if (rqstEmail) {
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUEST_EMAIL=rqstEmail
+        } else {
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_REQUEST_EMAIL=" "
         }
     }
 }
@@ -81,7 +91,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     println response.text
 }
 
-def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String phiMigrType, String tktId, String lastCmmt, String rqstUsr,  String url) {
+def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
     if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {
@@ -93,8 +103,8 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
         phireId=""
     }
     
-                    //crNextStep(phiDomainId, phiCrNum, tktStatus, phiAssignee, phiMigrType, ticketId, reqstrId)
-    def cr_next = new crNextStep(phiDomainId, phireId, tktStatus, tktAssignee, phiMigrType, tktId, rqstUsr)
+    //                          (phiDomainId, phiCrNum, tktStatus, phiAssignee, assigneeEmail, phiMigrType, ticketId, rqstUsr, rqstEmail) 
+    def cr_next = new crNextStep(phiDomainId, phireId, tktStatus, tktAssignee, tktAssigneeEmail, phiMigrType, tktId, rqstUsr, rqstEmail)
     def builder = new JsonBuilder(cr_next)
     println builder.toString()
 

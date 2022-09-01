@@ -22,9 +22,9 @@ class crNextStep {
             this.CR_TASK_NEXT_STEP_REQ.PHI_CR_NUM=" "
         }
         if (tktStatus){
-            this.CR_TASK_NEXT_STEP_REQ.DEL_JIRA_STATUS=tktStatus
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_TICKET_STATUS=tktStatus
         } else {
-            this.CR_TASK_NEXT_STEP_REQ.DEL_JIRA_STATUS=" "
+            this.CR_TASK_NEXT_STEP_REQ.DTTL_TICKET_STATUS=" "
         }
         if (phiAssignee) {
             this.CR_TASK_NEXT_STEP_REQ.PHI_ASSIGN_TO=phiAssignee

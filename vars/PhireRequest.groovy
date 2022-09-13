@@ -6,6 +6,7 @@ import groovy.json.JsonSlurper
 //@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
 import org.wslite.rest.RESTClient
 import org.wslite.http.auth.*
+import org.phire.*
 
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DTTL_TICKET_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_ASSIGN_EMAIL:"", PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"", DTTL_REQUESTER_ID:"", DTTL_REQUEST_EMAIL:""]
@@ -89,9 +90,10 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     println response.request
     println response.json
     println response.text
+    return response.json
 }
 
-def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
+String call(LinkedHashMap args, String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
     if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {
@@ -110,11 +112,29 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
 
     //JsonBuilder builder=readEnv(phireid)
     println "Calling send Message"
-    sendMessage(builder, userid, password, url)
-    //println builder.toString()
+    //sendMessage(builder, userid, password, url)
+    def respObj= new PhireResponse()
+    respObj=sendMessage(builder, userid, password, url) 
+    // Load response.json  to PhireResponse 
+    def builderRsp = new JsonBuilder(respObj)
+    println "Json builder - response obj"
+    println builderRsp.toString()
+    String jiraComment=""
+
+    if (respObj.CR_TASK_NEXT_STEP_RSP.PHI_HAS_ERROR) {
+       jiraComment =  respObj.CR_TASK_NEXT_STEP_RSP.PHI_ERROR_TEXT
+    }
+    else {
+        jiraComment =  respObj.CR_TASK_NEXT_STEP_RSP.DTTL_PHI_RESP_TEXT
+    }
 
     //sendMessage(builder,userid,password)
+
+    //def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment' [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
+    //def response = args.jenkinsWorkflowScript.invokeMethod 'jiraAddComment', [comment: jiraComment, idOrKey: tktId, site: 'JiraSSL']
+    return jiraComment
 }
+
 
 /*def jenkinsHttpGet(Map args) {
     def response = args.jenkinsWorkflowScript.invokeMethod 'httpRequest', [[args.url: url]] as Object[]

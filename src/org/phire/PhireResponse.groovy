@@ -23,7 +23,7 @@ class PhireResponse {
     ]
 
 
-    //@NonCPS
+    @NonCPS
     def PhireResponse (phiDomainId, phiCrType, phiCrNum, tktStatus, phiAssignee, phiMigrType, phiRespTxt, phiHasError, phiErrorTxt)
     {
         if (phiDomainId){
@@ -73,6 +73,7 @@ class PhireResponse {
         }    
     }
 
+    @NonCPS
     def PhireResponse ()
     {}    
 }

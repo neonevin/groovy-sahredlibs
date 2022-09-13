@@ -6,7 +6,7 @@ import groovy.json.JsonSlurper
 //@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
 import org.wslite.rest.RESTClient
 import org.wslite.http.auth.*
-import org.phire.phireResponse
+import org.phire.PhireResponse
 
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DTTL_TICKET_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_ASSIGN_EMAIL:"", PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"", DTTL_REQUESTER_ID:"", DTTL_REQUEST_EMAIL:""]
@@ -113,7 +113,7 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
     //JsonBuilder builder=readEnv(phireid)
     println "Calling send Message"
     //sendMessage(builder, userid, password, url)
-    def respObj= new phireResponse()
+    def respObj= new PhireResponse()
     respObj=sendMessage(builder, userid, password, url) // temp comm - assuming object iniit and assigned - next convert to text - maybe a metod in the class
     def builderRsp = new JsonBuilder(respObj)
     //def respMsg = new JsonSlurper()

@@ -75,8 +75,4 @@ class PhireResponse {
 
     def PhireResponse ()
     {}    
-    String getText() 
-    {
-        
-    }
 }

@@ -114,14 +114,22 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
     println "Calling send Message"
     //sendMessage(builder, userid, password, url)
     def respObj= new PhireResponse()
-    respObj=sendMessage(builder, userid, password, url) // temp comm - assuming object iniit and assigned - next convert to text - maybe a metod in the class
+    respObj=sendMessage(builder, userid, password, url) 
+    // Load response.json  to PhireResponse 
     def builderRsp = new JsonBuilder(respObj)
-    //def respMsg = new JsonSlurper()
-   println "Json builder - response obj"
-   println builderRsp.toString()
-
+    println "Json builder - response obj"
+    println builderRsp.toString()
+/*
+    if (respObj.CR_TASK_NEXT_STEP_RSP.PHI_HAS_ERROR) {
+        
+    }
+*/
     //sendMessage(builder,userid,password)
+
+    def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment' [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
+
 }
+
 
 /*def jenkinsHttpGet(Map args) {
     def response = args.jenkinsWorkflowScript.invokeMethod 'httpRequest', [[args.url: url]] as Object[]

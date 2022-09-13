@@ -121,7 +121,6 @@ def call(LinkedHashMap args, String userid, String password, String phireTktId, 
     println builderRsp.toString()
     String jiraComment=""
 
-    def response
     if (respObj.CR_TASK_NEXT_STEP_RSP.PHI_HAS_ERROR) {
        jiraComment =  respObj.CR_TASK_NEXT_STEP_RSP.PHI_ERROR_TEXT
     }

@@ -127,7 +127,7 @@ def call(LinkedHashMap args, String userid, String password, String phireTktId, 
     //sendMessage(builder,userid,password)
 
     //def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment' [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
-    def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment', [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
+    def response = args.jenkinsWorkflowScript.invokeMethod 'jiraAddComment', [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
 
 }
 

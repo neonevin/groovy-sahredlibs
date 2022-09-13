@@ -67,7 +67,7 @@ def buildMessage() {
 }
 
 @NonCPS
-def jsonMessage sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
+def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
      println "in send message 1"
 
     //def client = new RESTClient("http://140.238.207.38:8000/PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
@@ -111,8 +111,9 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
 
     //JsonBuilder builder=readEnv(phireid)
     println "Calling send Message"
-    sendMessage(builder, userid, password, url)
-    //println builder.toString()
+    //sendMessage(builder, userid, password, url)
+    def respMsg = new JsonSlurper(sendMessage(builder, userid, password, url))
+   //println respMsg.toString()
 
     //sendMessage(builder,userid,password)
 }

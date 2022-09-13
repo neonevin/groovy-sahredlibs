@@ -67,7 +67,7 @@ def buildMessage() {
 }
 
 @NonCPS
-def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
+def jsonMessage sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
      println "in send message 1"
 
     //def client = new RESTClient("http://140.238.207.38:8000/PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/")
@@ -89,6 +89,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     println response.request
     println response.json
     println response.text
+    return response.json
 }
 
 def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {

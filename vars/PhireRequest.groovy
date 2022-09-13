@@ -126,7 +126,8 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
 */
     //sendMessage(builder,userid,password)
 
-    def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment' [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
+    //def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment' [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
+    def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment', [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
 
 }
 

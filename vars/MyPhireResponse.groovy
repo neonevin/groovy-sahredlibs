@@ -4,7 +4,7 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 
 
-class phireResponse {
+class MyphireResponse {
 
     def CR_TASK_NEXT_STEP_RSP=  [
         PHI_DOMAIN_ID: "", 

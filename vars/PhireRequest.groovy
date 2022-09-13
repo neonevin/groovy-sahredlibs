@@ -112,8 +112,12 @@ def call(String userid, String password, String phireTktId, String tktStatus, St
     //JsonBuilder builder=readEnv(phireid)
     println "Calling send Message"
     //sendMessage(builder, userid, password, url)
-    def respMsg = new JsonSlurper(sendMessage(builder, userid, password, url))
-   //println respMsg.toString()
+    def respObj= new phireResponse()
+    respObj=sendMessage(builder, userid, password, url) // temp comm - assuming object iniit and assigned - next convert to text - maybe a metod in the class
+    def builderRsp = new JsonBuilder(respObj)
+    //def respMsg = new JsonSlurper()
+   println "Json builder - response obj"
+   println builderRsp.toString()
 
     //sendMessage(builder,userid,password)
 }

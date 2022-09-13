@@ -1,4 +1,6 @@
 
+/*phire pkg*/
+
 package org.phire
 
 import groovy.transform.Field

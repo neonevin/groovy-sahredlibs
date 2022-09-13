@@ -93,7 +93,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     return response.json
 }
 
-def call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url, Map args) {
+def call(LinkedHashMap args, String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
 //def call(String phireid) {
     //JsonBuilder builder=buildMessage()
     if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {

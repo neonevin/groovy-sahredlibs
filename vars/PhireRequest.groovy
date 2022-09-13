@@ -119,15 +119,20 @@ def call(LinkedHashMap args, String userid, String password, String phireTktId, 
     def builderRsp = new JsonBuilder(respObj)
     println "Json builder - response obj"
     println builderRsp.toString()
-/*
+    String jiraComment=""
+
+    def response
     if (respObj.CR_TASK_NEXT_STEP_RSP.PHI_HAS_ERROR) {
-        
+       jiraComment =  respObj.CR_TASK_NEXT_STEP_RSP.PHI_ERROR_TEXT
     }
-*/
+    else {
+        jiraComment =  respObj.CR_TASK_NEXT_STEP_RSP.DTTL_PHI_RESP_TEXT
+    }
+
     //sendMessage(builder,userid,password)
 
     //def response = args.jenkinsWorkflowScript.invokeMethod 'JiraAddComment' [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
-    def response = args.jenkinsWorkflowScript.invokeMethod 'jiraAddComment', [comment: "Test message", idOrKey: tktId, site: 'JiraSSL']
+    response = args.jenkinsWorkflowScript.invokeMethod 'jiraAddComment', [comment: jiraComment, idOrKey: tktId, site: 'JiraSSL']
 
 }
 

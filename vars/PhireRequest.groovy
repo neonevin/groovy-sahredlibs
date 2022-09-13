@@ -6,6 +6,7 @@ import groovy.json.JsonSlurper
 //@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
 import org.wslite.rest.RESTClient
 import org.wslite.http.auth.*
+import phireResponse
 
 class crNextStep {
     def CR_TASK_NEXT_STEP_REQ =  [PHI_DOMAIN_ID: "", PHI_CR_NUM: "", DTTL_TICKET_STATUS:"",  PHI_ASSIGN_TO:"", DTTL_ASSIGN_EMAIL:"", PHI_MIGR_TYPE:"", DTTL_TICKET_ID:"", DTTL_REQUESTER_ID:"", DTTL_REQUEST_EMAIL:""]

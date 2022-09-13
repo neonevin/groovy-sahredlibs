@@ -20,7 +20,7 @@ class MyphireResponse {
 
 
     //@NonCPS
-    def phireResponse (phiDomainId, phiCrType, phiCrNum, tktStatus, phiAssignee, phiMigrType, phiRespTxt, phiHasError, phiErrorTxt)
+    def MyphireResponse (phiDomainId, phiCrType, phiCrNum, tktStatus, phiAssignee, phiMigrType, phiRespTxt, phiHasError, phiErrorTxt)
     {
         if (phiDomainId){
             this.CR_TASK_NEXT_STEP_RSP.PHI_DOMAIN_ID=phiDomainId
@@ -69,7 +69,7 @@ class MyphireResponse {
         }    
     }
 
-    def phireResponse ()
+    def MyphireResponse ()
     {}    
     String getText() 
     {
@@ -126,13 +126,13 @@ def sendtestMessage()
         def personMap = new JsonSlurper().parseText(json.toPrettyString())
         // using Map to convert to Person object type
        // def newPhiResp = new phireResponse(personMap)    
-    def newPhiResp = new JsonSlurper().parseText(json.toPrettyString()) as phireResponse
+    def newPhiResp = new JsonSlurper().parseText(json.toPrettyString()) as MyphireResponse
     println "print object"
     println (newPhiResp.toString())
     println newPhiResp.CR_TASK_NEXT_STEP_RSP.DTTL_PHI_RESP_TEXT
     println newPhiResp.CR_TASK_NEXT_STEP_RSP.PHI_ERROR_TEXT
     /*Map json_rsp= testMessage()
-    def jsonPhire = new JsonSlurper().parseText(json_rsp) as phireResponse
+    def jsonPhire = new JsonSlurper().parseText(json_rsp) as MyphireResponse
     println jsonPhire.CR_TASK_NEXT_STEP_RSP
     */
 }

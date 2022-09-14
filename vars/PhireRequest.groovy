@@ -144,6 +144,7 @@ String call(String userid, String password, String phireTktId, String tktStatus,
     }
     response.content
 }*/
+/*
 @NonCPS
 def readEnv(String phireid){
     //println ${script.env.jstatus} 
@@ -154,8 +155,8 @@ def readEnv(String phireid){
     def builder = new JsonBuilder(cr_next)
     println builder.toString()
 }
-
-
+*/
+/*
 public String getGroovyVersion() {
         try {
                 return org.codehaus.groovy.runtime.InvokerHelper.version
@@ -163,6 +164,6 @@ public String getGroovyVersion() {
         catch (Throwable ignore) { }
         return GroovySystem.version
 }
-
-call('env.USERNAME', 'env.USERPASS', 'PHIRE_NUM', 'TICKET_STATUS', 'ISSUE_ASSIGNEE', 'S', 'TICKET_ID', 'LAST_COMMENT_BODY', 'REQUEST_USER', 'http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/')
+*/
+//call('env.USERNAME', 'env.USERPASS', 'PHIRE_NUM', 'TICKET_STATUS', 'ISSUE_ASSIGNEE', 'S', 'TICKET_ID', 'LAST_COMMENT_BODY', 'REQUEST_USER', 'http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/')
 

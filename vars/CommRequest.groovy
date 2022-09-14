@@ -2,10 +2,12 @@ import groovy.transform.Field
 import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
-import org.wslite.rest.RESTClient
+/*import org.wslite.rest.RESTClient
 import org.wslite.http.auth.*
+*/
 import org.phire.*
 
+/*
 @NonCPS
 def buildMessage() {
     //def cr_next = new crNextStep('HR','MIGR','CR000014','TEST','DTTLNARESH','N','S','PS02-1','nprasannan' )
@@ -36,8 +38,27 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     println response.text
     return response.json
 }
+*/
+//String call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
+Map call(Map args) {
 
-String call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
+    def commReqObj = new ExtCommReq()
+    // Load args  to request object
+    commReqObj.args=args
+
+    //commReqObj.fixNull();
+/*
+    // Load args  to Json 
+    def builderReq = new JsonBuilder(commReqObj)
+    println "Json builder - comm req obj"
+    println builderReq.toString()
+
+    println "comm req obj"
+    println commReqObj.DTTL_PHI_API_POST_REQ.toString()
+    println commReqObj.DTTL_PHI_API_POST_REQ.DTTL_ASSIGN_EMAIL.toString()
+*/
+
+    /*
     if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {
         phiDomainId = phireTktId.split('-')[0]
         phireId = phireTktId.split('-')[1]
@@ -68,7 +89,11 @@ String call(String userid, String password, String phireTktId, String tktStatus,
     }
     //def response = args.jenkinsWorkflowScript.invokeMethod 'jiraAddComment', [comment: jiraComment, idOrKey: tktId, site: 'JiraSSL']
     return jiraComment
+    */
+    return commReqObj.args
 }
 
 //call('env.USERNAME', 'env.USERPASS', 'PHIRE_NUM', 'TICKET_STATUS', 'ISSUE_ASSIGNEE', 'S', 'TICKET_ID', 'LAST_COMMENT_BODY', 'REQUEST_USER', 'http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/')
 
+def Map m1=call (DTTL_TICKET_ID:"ps01-1",DTTL_SOURCE_SYSTEM:"Phi",PHI_DOMAIN_ID:"HR2",PHI_CR_NUM:"cr00002",DTTL_EXT_UPDATE:"Y", PHI_ASSIGN_TO:"PHO_DEV",DTTL_ASSIGN_EMAIL:"123@a.com", DTTL_RES_COMMENTS:"comment")
+//def Map m1=call (DTTL_TICKET_ID:"ps01-1",DTTL_SOURCE_SYSTEM:"Phi",PHI_DOMAIN_ID:"HR2",PHI_CR_NUM:"cr00002",DTTL_EXT_UPDATE:"Y", PHI_ASSIGN_TO:"PHO_DEV",EMAIL:"123@a.com")

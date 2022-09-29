@@ -4,12 +4,9 @@
 package org.phire
 
 import groovy.transform.Field
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
 
 
-class PhireResponse {
+class PhireActRsp {
     def CR_TASK_NEXT_STEP_RSP=  [
         PHI_DOMAIN_ID: "", 
         PHI_CR_TYPE: "", 
@@ -24,7 +21,7 @@ class PhireResponse {
 
 
 
-    def PhireResponse (phiDomainId, phiCrType, phiCrNum, tktStatus, phiAssignee, phiMigrType, phiRespTxt, phiHasError, phiErrorTxt)
+    def PhireActRsp (phiDomainId, phiCrType, phiCrNum, tktStatus, phiAssignee, phiMigrType, phiRespTxt, phiHasError, phiErrorTxt)
     {
         if (phiDomainId){
             this.CR_TASK_NEXT_STEP_RSP.PHI_DOMAIN_ID=phiDomainId
@@ -74,6 +71,6 @@ class PhireResponse {
     }
 
 
-    def PhireResponse ()
+    def PhireActRsp ()
     {}    
 }

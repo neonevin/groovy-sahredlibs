@@ -37,7 +37,7 @@ def sendMessage(JsonBuilder jsonMsg,String userid, String password, String url){
     return response.json
 }
 
-String call(String userid, String password, String phireTktId, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String rqstUsr, String rqstEmail, String url) {
+String call(String userid, String password, String phireTktId, String ticketPrjId, String ticketAppId, String ticketType, String tktStatus, String tktAssignee, String tktAssigneeEmail, String phiMigrType, String tktId, String lastCmmt, String phiTitle, String rqstUsr, String rqstEmail, String url) {
     if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {
         phiDomainId = phireTktId.split('-')[0]
         phireId = phireTktId.split('-')[1]
@@ -47,7 +47,8 @@ String call(String userid, String password, String phireTktId, String tktStatus,
     }
     
     //                          (phiDomainId, phiCrNum, tktStatus, phiAssignee, assigneeEmail, phiMigrType, ticketId, rqstUsr, rqstEmail) 
-    def cr_next = new PhireActReq(phiDomainId, phireId, tktStatus, tktAssignee, tktAssigneeEmail, phiMigrType, tktId, rqstUsr, rqstEmail)
+   //        (phiDomainId, phiCrNum, ticketPrjId, ticketAppId, ticketType, tktStatus, tktAssignee, assigneeEmail, phiMigrType, ticketId, phiTitle, rqstUsr, rqstEmail) {
+    def cr_next = new PhireActReq(phiDomainId, phireId, ticketPrjId, ticketAppId, ticketType, tktStatus, tktAssignee, tktAssigneeEmail, phiMigrType, tktId, phiTitle, rqstUsr, rqstEmail)
     def builder = new JsonBuilder(cr_next)
     println builder.toString()
     println "Calling send Message"

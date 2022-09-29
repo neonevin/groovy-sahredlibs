@@ -45,18 +45,31 @@ Map call(Map args) {
     def commReqObj = new ExtCommReq()
     // Load args  to request object
     commReqObj.args=args
-
+    
+    def commRspObj = new ExtCommRsp()
+    //def map = buildRspMsg(args)
+    //commRspObj.buildRspMsg(map)
+    commRspObj.buildRspMsg(buildRspMsg(args))
     //commReqObj.fixNull();
 /*
+    // for req
     // Load args  to Json 
     def builderReq = new JsonBuilder(commReqObj)
     println "Json builder - comm req obj"
     println builderReq.toString()
-
     println "comm req obj"
     println commReqObj.DTTL_PHI_API_POST_REQ.toString()
     println commReqObj.DTTL_PHI_API_POST_REQ.DTTL_ASSIGN_EMAIL.toString()
+    
+    // for response
+    def builderRsp = new JsonBuilder(commRspObj)
+    //println "print args" + commReqObj.args.toString()
+    println "Json builder - comm rsp obj"
+    println builderRsp.toString()
 */
+    println "comm rsp obj"
+    println commRspObj.DTTL_PHI_API_POST_RES.toString()
+    //println commRspObj.DTTL_PHI_API_POST_RES.DTTL_ASSIGN_EMAIL.toString()
 
     /*
     if ((phireTktId) && (phireTktId.indexOf("-") != -1)) {
@@ -93,7 +106,18 @@ Map call(Map args) {
     return commReqObj.args
 }
 
+Map buildRspMsg(Map args)
+{
+    Map msg = args
+    //println "in fnction" + args.toString()
+    msg.put("upd_status","Y")
+    msg.put("comment", "Success")
+    msg.put("error", "N")
+    //println "in fnction Map" + msg.toString()
+    return msg
+}
 //call('env.USERNAME', 'env.USERPASS', 'PHIRE_NUM', 'TICKET_STATUS', 'ISSUE_ASSIGNEE', 'S', 'TICKET_ID', 'LAST_COMMENT_BODY', 'REQUEST_USER', 'http://140.238.207.38:8000//PSIGW/RESTListeningConnector/PSFT_HR/DEL_API_CR_NEXT_STEP.v1/')
 
-def Map m1=call (DTTL_TICKET_ID:"ps01-1",DTTL_SOURCE_SYSTEM:"Phi",PHI_DOMAIN_ID:"HR2",PHI_CR_NUM:"cr00002",DTTL_EXT_UPDATE:"Y", PHI_ASSIGN_TO:"PHO_DEV",DTTL_ASSIGN_EMAIL:"123@a.com", DTTL_RES_COMMENTS:"comment")
+//def Map m1=call (DTTL_TICKET_ID:"ps01-1",DTTL_SOURCE_SYSTEM:"Phi",PHI_DOMAIN_ID:"HR2",PHI_CR_NUM:"cr00002",DTTL_EXT_UPDATE:"Y", PHI_ASSIGN_TO:"PHO_DEV",DTTL_ASSIGN_EMAIL:"123@a.com", DTTL_RES_COMMENTS:"comment")
 //def Map m1=call (DTTL_TICKET_ID:"ps01-1",DTTL_SOURCE_SYSTEM:"Phi",PHI_DOMAIN_ID:"HR2",PHI_CR_NUM:"cr00002",DTTL_EXT_UPDATE:"Y", PHI_ASSIGN_TO:"PHO_DEV",EMAIL:"123@a.com")
+def Map m1=call(ticketid:"PS01-16", phire_domain:"HR2", phire_cr:"cr00002", upd_ext:"Y", assignee:"tester",assignee_email:"tester@123.com", comment:"test done" )
